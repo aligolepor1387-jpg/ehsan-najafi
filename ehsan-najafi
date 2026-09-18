@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BMW | Sheer Driving Pleasure</title>
+<title>Ehsan Najafi | Personal Website</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -14,7 +14,7 @@
     overflow-x: hidden;
   }
 
-  /* ===== HERO WITH 3D ROTATING CAR ===== */
+  /* ===== HERO WITH ROTATING CAR ===== */
   .showcase {
     position: relative;
     height: 100vh;
@@ -43,8 +43,20 @@
   .showcase-title {
     position: absolute;
     top: 60px;
-    font-size: 16px;
-    letter-spacing: 8px;
+    text-align: center;
+    z-index: 3;
+  }
+  .showcase-title h1 {
+    font-size: 38px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .showcase-title h1 strong { font-weight: 700; color: #4da6ff; }
+  .showcase-title p {
+    font-size: 14px;
+    letter-spacing: 4px;
     color: #4da6ff;
     text-transform: uppercase;
     font-weight: 300;
@@ -66,7 +78,6 @@
     transition: transform 0.1s linear;
   }
 
-  /* Car body */
   .car-body {
     position: absolute;
     bottom: 60px;
@@ -103,7 +114,6 @@
     box-shadow: 0 0 20px rgba(77,166,255,0.5);
   }
 
-  /* Headlight */
   .headlight {
     position: absolute;
     top: 40px;
@@ -120,7 +130,6 @@
     50% { opacity: 0.85; }
   }
 
-  /* Taillight */
   .taillight {
     position: absolute;
     top: 45px;
@@ -132,7 +141,6 @@
     box-shadow: 0 0 20px 5px rgba(255,51,51,0.7);
   }
 
-  /* Wheels */
   .wheel {
     position: absolute;
     bottom: 30px;
@@ -142,7 +150,6 @@
     border-radius: 50%;
     border: 5px solid #333;
     box-shadow: 0 5px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.8);
-    animation: spin 1s infinite linear;
   }
   .wheel::before {
     content: '';
@@ -163,12 +170,8 @@
     border-radius: 2px;
     box-shadow: 0 -20px 0 #555, 0 20px 0 #555;
   }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .wheel-front { right: 12%; animation-play-state: paused; }
-  .wheel-back { left: 12%; animation-play-state: paused; }
+  .wheel-front { right: 12%; }
+  .wheel-back { left: 12%; }
 
   .showcase-hint {
     position: absolute;
@@ -220,7 +223,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: 2px;
   }
@@ -228,19 +231,18 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
-    border: 3px solid #1a1a1a;
+    background: linear-gradient(135deg, #0066b1, #4da6ff);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: bold;
-    color: #000;
+    color: #fff;
   }
   nav a {
     color: #333;
     text-decoration: none;
-    margin-left: 35px;
+    margin-left: 30px;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -249,162 +251,131 @@
   }
   nav a:hover { color: #0066b1; }
 
-  /* ===== MODELS ===== */
+  /* ===== SECTIONS ===== */
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 90px 30px;
+  }
   .section-title {
-    text-align: center;
-    font-size: 42px;
+    font-size: 38px;
     font-weight: 300;
-    margin: 80px 0 15px;
+    margin-bottom: 12px;
     letter-spacing: 3px;
+    text-align: center;
   }
   .section-title strong { font-weight: 700; color: #0066b1; }
   .section-subtitle {
     text-align: center;
     color: #777;
-    font-size: 15px;
-    letter-spacing: 2px;
+    font-size: 13px;
+    letter-spacing: 3px;
     margin-bottom: 50px;
     text-transform: uppercase;
   }
+  .section p {
+    font-size: 16px;
+    line-height: 2;
+    color: #555;
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;
+  }
 
-  .models {
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 40px;
+  }
+  .skill {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px 25px;
+    width: 220px;
+    text-align: center;
+    transition: all 0.4s;
+  }
+  .skill:hover {
+    transform: translateY(-6px);
+    border-color: #0066b1;
+    box-shadow: 0 15px 40px rgba(0,102,177,0.15);
+  }
+  .skill .icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+    display: block;
+  }
+  .skill h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  /* ===== PROJECTS ===== */
+  .projects {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    padding: 0 30px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-top: 40px;
   }
-  .model-card {
+  .project {
     background: #fff;
     width: 300px;
     border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
     transition: all 0.4s;
-    cursor: pointer;
   }
-  .model-card:hover {
+  .project:hover {
+    transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-    transform: translateY(-5px);
   }
-  .model-image {
-    height: 200px;
-    background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+  .project-image {
+    height: 170px;
+    background: linear-gradient(135deg, #0066b1, #4da6ff);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 70px;
-    position: relative;
-    overflow: hidden;
+    font-size: 60px;
   }
-  .model-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-    transition: left 0.6s;
-  }
-  .model-card:hover .model-image::after { left: 100%; }
-  .model-info { padding: 25px; }
-  .model-info h3 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .model-info .type {
-    display: inline-block;
-    background: #0066b1;
-    color: #fff;
-    font-size: 11px;
-    padding: 4px 12px;
-    border-radius: 3px;
-    margin-bottom: 15px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .model-info p {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 18px;
-  }
-  .model-price {
+  .project-info { padding: 22px; }
+  .project-info h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
     color: #1a1a1a;
-    font-weight: 700;
-    font-size: 16px;
-    border-top: 1px solid #eee;
-    padding-top: 15px;
   }
-
-  /* ===== HISTORY ===== */
-  .history {
-    background: #1a1a1a;
-    color: #fff;
-    padding: 90px 20px;
-    text-align: center;
-  }
-  .history h2 {
-    font-size: 42px;
-    font-weight: 300;
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-  }
-  .history h2 strong { font-weight: 700; color: #4da6ff; }
-  .history p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 17px;
-    line-height: 2.2;
-    color: #bbb;
-  }
-
-  /* ===== STATS ===== */
-  .stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 60px;
-    padding: 70px 20px;
-    background: #fff;
-  }
-  .stat { text-align: center; min-width: 140px; }
-  .stat .num {
-    font-size: 48px;
-    font-weight: 700;
-    color: #0066b1;
-    margin-bottom: 8px;
-  }
-  .stat .label {
+  .project-info p {
+    font-size: 14px;
     color: #777;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    line-height: 1.8;
+    text-align: left;
   }
 
   /* ===== CONTACT ===== */
   .contact {
-    max-width: 600px;
+    background: #1a1a1a;
+    padding: 90px 30px;
+    color: #fff;
+  }
+  .contact .section-title { color: #fff; }
+  .contact .section-title strong { color: #4da6ff; }
+  .contact .section-subtitle { color: #888; }
+  .contact-form {
+    max-width: 550px;
     margin: 0 auto;
-    padding: 80px 20px 100px;
   }
-  .contact h2 {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 300;
-    margin-bottom: 40px;
-    letter-spacing: 3px;
-  }
-  .contact h2 strong { font-weight: 700; color: #0066b1; }
   .form-group { margin-bottom: 22px; }
   .form-group label {
     display: block;
     margin-bottom: 8px;
     font-size: 12px;
     font-weight: 600;
-    color: #333;
+    color: #ccc;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
@@ -412,10 +383,10 @@
   .form-group textarea {
     width: 100%;
     padding: 16px 18px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    color: #1a1a1a;
+    background: #0a0a0a;
+    border: 1px solid rgba(0,102,177,0.3);
+    border-radius: 6px;
+    color: #fff;
     font-family: inherit;
     font-size: 15px;
     transition: all 0.3s;
@@ -423,16 +394,16 @@
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: #0066b1;
-    box-shadow: 0 0 0 3px rgba(0,102,177,0.1);
+    border-color: #4da6ff;
+    box-shadow: 0 0 0 3px rgba(77,166,255,0.15);
   }
   .form-group textarea { resize: vertical; min-height: 120px; }
   .submit-btn {
     width: 100%;
     padding: 18px;
-    background: #0066b1;
+    background: linear-gradient(135deg, #0066b1, #4da6ff);
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     color: #fff;
     font-size: 13px;
     font-weight: 700;
@@ -442,14 +413,13 @@
     text-transform: uppercase;
   }
   .submit-btn:hover {
-    background: #005599;
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0,102,177,0.3);
+    box-shadow: 0 10px 30px rgba(77,166,255,0.4);
   }
 
   /* ===== FOOTER ===== */
   footer {
-    background: #1a1a1a;
+    background: #050505;
     color: #888;
     text-align: center;
     padding: 35px;
@@ -460,10 +430,9 @@
   @media (max-width: 600px) {
     header { flex-direction: column; gap: 15px; padding: 15px; }
     nav a { margin: 0 10px; font-size: 11px; }
-    .section-title { font-size: 28px; }
-    .showcase-title { font-size: 12px; letter-spacing: 4px; }
-    .stats { gap: 30px; }
-    .stat .num { font-size: 36px; }
+    .showcase-title h1 { font-size: 24px; letter-spacing: 3px; }
+    .section-title { font-size: 26px; }
+    .section { padding: 60px 20px; }
   }
 </style>
 </head>
@@ -472,20 +441,24 @@
   <!-- ===== HEADER ===== -->
   <header>
     <div class="logo">
-      <div class="logo-circle">BMW</div>
-      <span>BMW</span>
+      <div class="logo-circle">EN</div>
+      <span>Ehsan Najafi</span>
     </div>
     <nav>
       <a href="#home">Home</a>
-      <a href="#models">Models</a>
-      <a href="#history">History</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- ===== HERO WITH ROTATING CAR ===== -->
   <section class="showcase" id="home">
-    <div class="showcase-title">Sheer Driving Pleasure</div>
+    <div class="showcase-title">
+      <h1>Ehsan <strong>Najafi</strong></h1>
+      <p>Personal Website</p>
+    </div>
     <div class="car-wrapper">
       <div class="car" id="car">
         <div class="bmw-badge">BMW</div>
@@ -500,101 +473,96 @@
     <div class="showcase-hint">↓ SCROLL TO ROTATE ↓</div>
   </section>
 
-  <!-- ===== MODELS ===== -->
-  <h2 class="section-title">Popular <strong>Models</strong></h2>
-  <p class="section-subtitle">A collection of the finest BMW cars</p>
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <h2 class="section-title">About <strong>Me</strong></h2>
+    <p class="section-subtitle">Who I am</p>
+    <p>Welcome to my personal website. I'm Ehsan Najafi, passionate about cars, technology, and design. This website is a place where I share my journey, skills, and projects. Feel free to explore and get in touch.</p>
+  </section>
 
-  <section class="models" id="models">
-    <div class="model-card">
-      <div class="model-image">🏎️</div>
-      <div class="model-info">
-        <h3>3 Series</h3>
-        <span class="type">Sport Sedan</span>
-        <p>The best-selling BMW sport sedan with perfect balance between power and comfort.</p>
-        <div class="model-price">From $65,000</div>
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills">
+    <h2 class="section-title">My <strong>Skills</strong></h2>
+    <p class="section-subtitle">What I do</p>
+    <div class="skills-grid">
+      <div class="skill">
+        <span class="icon">💻</span>
+        <h4>Web Development</h4>
       </div>
-    </div>
-    <div class="model-card">
-      <div class="model-image">🚗</div>
-      <div class="model-info">
-        <h3>5 Series</h3>
-        <span class="type">Luxury Sedan</span>
-        <p>A powerful luxury sedan, combining elegance with the latest technology.</p>
-        <div class="model-price">From $85,000</div>
+      <div class="skill">
+        <span class="icon">🎨</span>
+        <h4>UI / UX Design</h4>
       </div>
-    </div>
-    <div class="model-card">
-      <div class="model-image">🚙</div>
-      <div class="model-info">
-        <h3>X5</h3>
-        <span class="type">SUV</span>
-        <p>A luxury SUV with spacious interior and unmatched off-road capability.</p>
-        <div class="model-price">From $95,000</div>
+      <div class="skill">
+        <span class="icon">🚗</span>
+        <h4>Automotive Passion</h4>
       </div>
-    </div>
-    <div class="model-card">
-      <div class="model-image">⚡</div>
-      <div class="model-info">
-        <h3>i8</h3>
-        <span class="type">Hybrid</span>
-        <p>A futuristic hybrid sports car with stunning design and performance.</p>
-        <div class="model-price">From $145,000</div>
+      <div class="skill">
+        <span class="icon">📱</span>
+        <h4>Mobile Apps</h4>
       </div>
     </div>
   </section>
 
-  <!-- ===== HISTORY ===== -->
-  <section class="history" id="history">
-    <h2>BMW <strong>History</strong></h2>
-    <p>BMW (Bayerische Motoren Werke) was founded in 1916 in Munich, Germany. The company started by producing aircraft engines, then moved on to motorcycles and automobiles. Today, BMW is one of the most prestigious luxury car brands in the world, operating in over 140 countries.</p>
-  </section>
-
-  <!-- ===== STATS ===== -->
-  <section class="stats">
-    <div class="stat">
-      <div class="num">1916</div>
-      <div class="label">Founded</div>
-    </div>
-    <div class="stat">
-      <div class="num">140+</div>
-      <div class="label">Countries</div>
-    </div>
-    <div class="stat">
-      <div class="num">2.5M</div>
-      <div class="label">Annual Sales</div>
-    </div>
-    <div class="stat">
-      <div class="num">100+</div>
-      <div class="label">Years Experience</div>
+  <!-- ===== PROJECTS ===== -->
+  <section class="section" id="projects">
+    <h2 class="section-title">My <strong>Projects</strong></h2>
+    <p class="section-subtitle">Things I've built</p>
+    <div class="projects">
+      <div class="project">
+        <div class="project-image">🚀</div>
+        <div class="project-info">
+          <h4>Project One</h4>
+          <p>A modern web application built with the latest technologies.</p>
+        </div>
+      </div>
+      <div class="project">
+        <div class="project-image">💎</div>
+        <div class="project-info">
+          <h4>Project Two</h4>
+          <p>An elegant design system focused on user experience.</p>
+        </div>
+      </div>
+      <div class="project">
+        <div class="project-image">⚡</div>
+        <div class="project-info">
+          <h4>Project Three</h4>
+          <p>A fast and responsive platform for modern users.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===== CONTACT ===== -->
   <section class="contact" id="contact">
-    <h2>Contact <strong>Us</strong></h2>
-    <form action="https://formsubmit.co/alialigolipour13871387@gmail.com" method="POST">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" name="name" required placeholder="Enter your name">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" required placeholder="email@example.com">
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea name="message" required placeholder="Write your message..."></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send Message</button>
-    </form>
+    <h2 class="section-title">Get In <strong>Touch</strong></h2>
+    <p class="section-subtitle">Send me a message</p>
+    <div class="contact-form">
+      <form action="https://formsubmit.co/alialigolipour13871387@gmail.com" method="POST">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" required placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" name="email" required placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" required placeholder="Write your message..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
   </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
-    © 2026 BMW | All Rights Reserved
+    © 2026 Ehsan Najafi | All Rights Reserved
   </footer>
 
   <script>
-    // ===== 360 Degree Car Rotation on Scroll =====
+    // 360-degree car rotation on scroll
     const car = document.getElementById('car');
     const showcase = document.querySelector('.showcase');
 
@@ -602,12 +570,10 @@
       const rect = showcase.getBoundingClientRect();
       const showcaseHeight = showcase.offsetHeight;
 
-      // Calculate scroll progress within the showcase section
       let progress = -rect.top / (showcaseHeight * 0.8);
       if (progress < 0) progress = 0;
       if (progress > 1) progress = 1;
 
-      // Rotate the car 360 degrees based on scroll
       const rotation = progress * 360;
       car.style.transform = `rotateY(${rotation}deg)`;
     });
