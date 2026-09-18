@@ -14,7 +14,6 @@
     overflow-x: hidden;
   }
 
-  /* ===== HERO WITH ROTATING CAR ===== */
   .showcase {
     position: relative;
     height: 100vh;
@@ -63,7 +62,6 @@
     font-weight: 300;
   }
 
-  /* ===== CAR CONTAINER ===== */
   .car-wrapper {
     position: relative;
     width: 100%;
@@ -80,7 +78,6 @@
     filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6));
   }
 
-  /* ===== HEADLIGHT GLOW (FRONT) ===== */
   .headlight-glow {
     position: absolute;
     top: 47%;
@@ -100,7 +97,6 @@
     100% { opacity: 1; transform: scale(1); }
   }
 
-  /* ===== TAILLIGHT GLOW (BACK) ===== */
   .taillight-glow {
     position: absolute;
     top: 39%;
@@ -120,7 +116,6 @@
     100% { opacity: 0.9; transform: scale(1); }
   }
 
-  /* Light beams on the ground */
   .light-beam-front {
     position: absolute;
     top: 55%;
@@ -152,7 +147,6 @@
     50% { transform: translateY(-10px); opacity: 1; }
   }
 
-  /* ===== HEADER ===== */
   header {
     position: sticky;
     top: 0;
@@ -197,7 +191,6 @@
   }
   nav a:hover { color: #0066b1; }
 
-  /* ===== SECTIONS ===== */
   .section {
     max-width: 1000px;
     margin: 0 auto;
@@ -403,7 +396,7 @@
     </div>
 
     <div class="car-wrapper" id="car">
-      <img src="bmw.png" alt="BMW M5" class="car-image">
+      <img src="bmw.jpg" alt="BMW M5" class="car-image">
       <div class="headlight-glow"></div>
       <div class="taillight-glow"></div>
       <div class="light-beam-front"></div>
@@ -507,7 +500,6 @@
       if (progress < 0) progress = 0;
       if (progress > 1) progress = 1;
 
-      // 360-degree horizontal rotation
       const rotation = progress * 360;
       car.style.transform = `rotateY(${rotation}deg)`;
     });
