@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMW | Sheer Driving Pleasure</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO WITH 3D ROTATING CAR ===== */
+  .showcase {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .showcase::before {
+    content: '';
+    position: absolute;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0,102,177,0.25) 0%, transparent 60%);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s infinite ease-in-out;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+
+  .showcase-title {
+    position: absolute;
+    top: 60px;
+    font-size: 16px;
+    letter-spacing: 8px;
+    color: #4da6ff;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .car-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    perspective: 1200px;
+    z-index: 2;
+  }
+
+  .car {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+  }
+
+  /* Car body */
+  .car-body {
+    position: absolute;
+    bottom: 60px;
+    left: 5%;
+    width: 90%;
+    height: 120px;
+    background: linear-gradient(180deg, #0066b1 0%, #004a80 60%, #003355 100%);
+    border-radius: 60px 80px 20px 20px;
+    box-shadow:
+      0 20px 60px rgba(0,102,177,0.5),
+      inset 0 -10px 30px rgba(0,0,0,0.3),
+      inset 0 10px 20px rgba(255,255,255,0.15);
+  }
+  .car-body::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 20%;
+    width: 60%;
+    height: 40px;
+    background: linear-gradient(180deg, #1a1a1a 0%, #333 100%);
+    border-radius: 40px 40px 10px 10px;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+  }
+  .car-body::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 22%;
+    width: 26%;
+    height: 22px;
+    background: linear-gradient(135deg, #4da6ff, #0066b1);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(77,166,255,0.5);
+  }
+
+  /* Headlight */
+  .headlight {
+    position: absolute;
+    top: 40px;
+    right: 8%;
+    width: 40px;
+    height: 18px;
+    background: #fff;
+    border-radius: 10px 30px 30px 10px;
+    box-shadow: 0 0 30px 10px rgba(255,255,255,0.8), 0 0 60px 20px rgba(77,166,255,0.4);
+    animation: flicker 2s infinite;
+  }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+
+  /* Taillight */
+  .taillight {
+    position: absolute;
+    top: 45px;
+    left: 5%;
+    width: 25px;
+    height: 14px;
+    background: #ff3333;
+    border-radius: 10px 5px 5px 10px;
+    box-shadow: 0 0 20px 5px rgba(255,51,51,0.7);
+  }
+
+  /* Wheels */
+  .wheel {
+    position: absolute;
+    bottom: 30px;
+    width: 75px;
+    height: 75px;
+    background: radial-gradient(circle, #444 0%, #1a1a1a 60%, #000 100%);
+    border-radius: 50%;
+    border: 5px solid #333;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.8);
+    animation: spin 1s infinite linear;
+  }
+  .wheel::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px; height: 30px;
+    background: radial-gradient(circle, #888, #333);
+    border-radius: 50%;
+  }
+  .wheel::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; height: 4px;
+    background: #555;
+    border-radius: 2px;
+    box-shadow: 0 -20px 0 #555, 0 20px 0 #555;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .wheel-front { right: 12%; animation-play-state: paused; }
+  .wheel-back { left: 12%; animation-play-state: paused; }
+
+  .showcase-hint {
+    position: absolute;
+    bottom: 50px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    letter-spacing: 2px;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-10px); opacity: 1; }
+  }
+
+  .bmw-badge {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
+    border: 4px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 3;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .logo-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
+    border: 3px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000;
+  }
+  nav a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 35px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    text-transform: uppercase;
+  }
+  nav a:hover { color: #0066b1; }
+
+  /* ===== MODELS ===== */
+  .section-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 300;
+    margin: 80px 0 15px;
+    letter-spacing: 3px;
+  }
+  .section-title strong { font-weight: 700; color: #0066b1; }
+  .section-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+  }
+
+  .models {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 30px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .model-card {
+    background: #fff;
+    width: 300px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.4s;
+    cursor: pointer;
+  }
+  .model-card:hover {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    transform: translateY(-5px);
+  }
+  .model-image {
+    height: 200px;
+    background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .model-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    transition: left 0.6s;
+  }
+  .model-card:hover .model-image::after { left: 100%; }
+  .model-info { padding: 25px; }
+  .model-info h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .model-info .type {
+    display: inline-block;
+    background: #0066b1;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .model-info p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .model-price {
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 16px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+  }
+
+  /* ===== HISTORY ===== */
+  .history {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 90px 20px;
+    text-align: center;
+  }
+  .history h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+  }
+  .history h2 strong { font-weight: 700; color: #4da6ff; }
+  .history p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 2.2;
+    color: #bbb;
+  }
+
+  /* ===== STATS ===== */
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    padding: 70px 20px;
+    background: #fff;
+  }
+  .stat { text-align: center; min-width: 140px; }
+  .stat .num {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0066b1;
+    margin-bottom: 8px;
+  }
+  .stat .label {
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 80px 20px 100px;
+  }
+  .contact h2 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+  }
+  .contact h2 strong { font-weight: 700; color: #0066b1; }
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #1a1a1a;
+    font-family: inherit;
+    font-size: 15px;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #0066b1;
+    box-shadow: 0 0 0 3px rgba(0,102,177,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: #0066b1;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+  .submit-btn:hover {
+    background: #005599;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,102,177,0.3);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #1a1a1a;
+    color: #888;
+    text-align: center;
+    padding: 35px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; gap: 15px; padding: 15px; }
+    nav a { margin: 0 10px; font-size: 11px; }
+    .section-title { font-size: 28px; }
+    .showcase-title { font-size: 12px; letter-spacing: 4px; }
+    .stats { gap: 30px; }
+    .stat .num { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <div class="logo-circle">BMW</div>
+      <span>BMW</span>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#models">Models</a>
+      <a href="#history">History</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== HERO WITH ROTATING CAR ===== -->
+  <section class="showcase" id="home">
+    <div class="showcase-title">Sheer Driving Pleasure</div>
+    <div class="car-wrapper">
+      <div class="car" id="car">
+        <div class="bmw-badge">BMW</div>
+        <div class="car-body">
+          <div class="headlight"></div>
+          <div class="taillight"></div>
+        </div>
+        <div class="wheel wheel-front"></div>
+        <div class="wheel wheel-back"></div>
+      </div>
+    </div>
+    <div class="showcase-hint">↓ SCROLL TO ROTATE ↓</div>
+  </section>
+
+  <!-- ===== MODELS ===== -->
+  <h2 class="section-title">Popular <strong>Models</strong></h2>
+  <p class="section-subtitle">A collection of the finest BMW cars</p>
+
+  <section class="models" id="models">
+    <div class="model-card">
+      <div class="model-image">🏎️</div>
+      <div class="model-info">
+        <h3>3 Series</h3>
+        <span class="type">Sport Sedan</span>
+        <p>The best-selling BMW sport sedan with perfect balance between power and comfort.</p>
+        <div class="model-price">From $65,000</div>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-image">🚗</div>
+      <div class="model-info">
+        <h3>5 Series</h3>
+        <span class="type">Luxury Sedan</span>
+        <p>A powerful luxury sedan, combining elegance with the latest technology.</p>
+        <div class="model-price">From $85,000</div>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-image">🚙</div>
+      <div class="model-info">
+        <h3>X5</h3>
+        <span class="type">SUV</span>
+        <p>A luxury SUV with spacious interior and unmatched off-road capability.</p>
+        <div class="model-price">From $95,000</div>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-image">⚡</div>
+      <div class="model-info">
+        <h3>i8</h3>
+        <span class="type">Hybrid</span>
+        <p>A futuristic hybrid sports car with stunning design and performance.</p>
+        <div class="model-price">From $145,000</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HISTORY ===== -->
+  <section class="history" id="history">
+    <h2>BMW <strong>History</strong></h2>
+    <p>BMW (Bayerische Motoren Werke) was founded in 1916 in Munich, Germany. The company started by producing aircraft engines, then moved on to motorcycles and automobiles. Today, BMW is one of the most prestigious luxury car brands in the world, operating in over 140 countries.</p>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats">
+    <div class="stat">
+      <div class="num">1916</div>
+      <div class="label">Founded</div>
+    </div>
+    <div class="stat">
+      <div class="num">140+</div>
+      <div class="label">Countries</div>
+    </div>
+    <div class="stat">
+      <div class="num">2.5M</div>
+      <div class="label">Annual Sales</div>
+    </div>
+    <div class="stat">
+      <div class="num">100+</div>
+      <div class="label">Years Experience</div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <h2>Contact <strong>Us</strong></h2>
+    <form action="https://formsubmit.co/alialigolipour13871387@gmail.com" method="POST">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" required placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required placeholder="email@example.com">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea name="message" required placeholder="Write your message..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2026 BMW | All Rights Reserved
+  </footer>
+
+  <script>
+    // ===== 360 Degree Car Rotation on Scroll =====
+    const car = document.getElementById('car');
+    const showcase = document.querySelector('.showcase');
+
+    window.addEventListener('scroll', () => {
+      const rect = showcase.getBoundingClientRect();
+      const showcaseHeight = showcase.offsetHeight;
+
+      // Calculate scroll progress within the showcase section
+      let progress = -rect.top / (showcaseHeight * 0.8);
+      if (progress < 0) progress = 0;
+      if (progress > 1) progress = 1;
+
+      // Rotate the car 360 degrees based on scroll
+      const rotation = progress * 360;
+      car.style.transform = `rotateY(${rotation}deg)`;
+    });
+  </script>
+
+</body>
+</html>
