@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Better Call ehsan</title>
+<title>Better Call Ehsan</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -104,6 +104,8 @@
     animation: carDrive 1.8s 1.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
     filter: drop-shadow(0 0 40px rgba(77,166,255,0.6)) drop-shadow(0 0 80px rgba(0,102,177,0.4));
     z-index: 3;
+    border-radius: 12px;
+    object-fit: cover;
   }
   @keyframes carDrive {
     0% { right: -120%; opacity: 0; transform: translateY(-50%) scale(1.1); }
@@ -341,37 +343,13 @@
     width: 100%; max-width: 850px;
     z-index: 2;
   }
+
   .car-image {
-    width: 100%; height: auto; display: block;
-    filter: drop-shadow(0 30px 60px rgba(77,166,255,0.3));
-  }
-  .headlight-glow {
-    position: absolute; top: 47%; right: 4.5%;
-    width: 55px; height: 20px;
-    background: radial-gradient(ellipse, #fff 0%, #cce6ff 30%, rgba(77,166,255,0.8) 60%, transparent 100%);
-    border-radius: 50%;
-    opacity: 0; filter: blur(6px);
-    animation: headlightOn 1.5s 0.5s forwards;
-    box-shadow: 0 0 40px 15px rgba(255,255,255,0.9), 0 0 80px 30px rgba(77,166,255,0.8);
-  }
-  @keyframes headlightOn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-  .taillight-glow {
-    position: absolute; top: 39%; left: 3%;
-    width: 40px; height: 15px;
-    background: radial-gradient(ellipse, #ff3333 0%, #ff0000 40%, rgba(200,0,0,0.8) 70%, transparent 100%);
-    border-radius: 40%;
-    opacity: 0; filter: blur(5px);
-    animation: taillightOn 1.5s 1s forwards;
-    box-shadow: 0 0 30px 12px rgba(255,51,51,0.9), 0 0 60px 25px rgba(255,0,0,0.5);
-  }
-  @keyframes taillightOn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0.9; transform: scale(1); }
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    box-shadow: 0 0 80px rgba(77,166,255,0.4);
   }
 
   /* SPECS */
@@ -516,13 +494,17 @@
     <div class="splash-logo">BMW</div>
     <div class="splash-name">
       Looking for a car?<br>
-      <strong>Better call ehsan</strong>
+      <strong>Better call Ehsan</strong>
     </div>
     <div class="speed-trail"></div>
     <div class="dust">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
-    <img src="bmw.jpg" alt="BMW M5" class="splash-car">
+
+    <!-- SPLASH VIDEO -->
+    <video class="splash-car" autoplay muted loop playsinline>
+      <source src="MP4_۲۰۲۵۰۹۱۹_۱۹۰۷۲VLOG.mp4" type="video/mp4">
+    </video>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
@@ -579,15 +561,16 @@
         <h2>Personal Website</h2>
         <h1>
           Looking for a car?<br>
-          <strong>Better call ehsan</strong>
+          <strong>Better call Ehsan</strong>
         </h1>
         <a href="models.html" class="hero-btn">Explore BMW M5</a>
       </div>
 
       <div class="car-wrapper">
-        <img src="bmw.jpg" alt="BMW M5" class="car-image">
-        <div class="headlight-glow"></div>
-        <div class="taillight-glow"></div>
+        <!-- HERO VIDEO -->
+        <video class="car-image" autoplay muted loop playsinline>
+          <source src="VID_۲۰۲۶۰۹۱۹_۱۸۵۴۴۶_۷۷۰(۲).mp4" type="video/mp4">
+        </video>
       </div>
     </section>
 
@@ -632,7 +615,7 @@
           <div class="footer-brand">
             <div class="logo">
               <div class="logo-circle">EN</div>
-              <span>Better Call ehsan</span>
+              <span>Better Call Ehsan</span>
             </div>
             <p>Passionate about cars, technology, and design. A personal tribute to the BMW world.</p>
           </div>
@@ -654,7 +637,7 @@
 
         <div class="footer-bottom">
           <div class="copyright">
-            © 2026 Better Call ehsan. All rights reserved.
+            © 2026 Better Call Ehsan. All rights reserved.
           </div>
           <div class="legal">
             <a href="#">Privacy Policy</a>
