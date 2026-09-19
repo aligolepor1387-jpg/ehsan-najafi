@@ -30,6 +30,7 @@
     justify-content: center;
     overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s;
+    padding: 20px;
   }
   .splash.hide { opacity: 0; visibility: hidden; }
 
@@ -39,90 +40,51 @@
     border: 4px solid #4da6ff;
     display: flex; align-items: center; justify-content: center;
     font-size: 16px; font-weight: bold; color: #000;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     opacity: 0;
     transform: scale(0.3);
     animation: logoIn 1s 0.2s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 0 60px rgba(77,166,255,0.8), 0 0 120px rgba(0,102,177,0.5);
     position: relative; z-index: 5;
+    flex-shrink: 0;
   }
   @keyframes logoIn { to { opacity: 1; transform: scale(1); } }
 
   .splash-name {
-    font-size: 22px; font-weight: 200; letter-spacing: 4px;
+    font-size: 20px; font-weight: 200; letter-spacing: 3px;
     color: #fff; opacity: 0;
     animation: nameIn 1s 1.5s forwards;
-    text-align: center; white-space: nowrap; z-index: 5;
+    text-align: center; z-index: 5;
     line-height: 1.6;
     text-shadow: 0 0 30px rgba(77,166,255,0.8);
-    margin-bottom: 30px;
+    margin-bottom: 35px;
   }
   .splash-name strong {
     font-weight: 600; color: #4da6ff;
-    font-size: 26px; letter-spacing: 6px;
+    font-size: 26px; letter-spacing: 5px;
+    display: block;
+    margin-top: 5px;
   }
   @keyframes nameIn {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  .speed-trail {
-    position: absolute; top: 65%; right: 0;
-    height: 4px; width: 0;
-    background: linear-gradient(90deg, transparent, #4da6ff, #fff);
-    box-shadow: 0 0 30px #4da6ff, 0 0 60px #0066b1;
-    transform: translateY(-50%);
-    opacity: 0;
-    animation: trailGrow 1.2s 2s forwards;
-    z-index: 2;
-  }
-  @keyframes trailGrow {
-    0% { width: 0; opacity: 0; }
-    30% { width: 60%; opacity: 1; }
-    100% { width: 100%; opacity: 0; }
-  }
-
   .splash-car {
-    position: absolute; top: 65%; right: -120%;
-    transform: translateY(-50%);
-    width: 380px; max-width: 80%;
+    position: relative;
+    width: 400px;
+    max-width: 80%;
     opacity: 0;
-    animation: carDrive 1.8s 1.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: carFadeIn 1.5s 2s forwards;
     filter: drop-shadow(0 0 40px rgba(77,166,255,0.6)) drop-shadow(0 0 80px rgba(0,102,177,0.4));
-    z-index: 3; border-radius: 12px; object-fit: cover;
+    z-index: 3;
+    border-radius: 16px;
+    object-fit: cover;
   }
-  @keyframes carDrive {
-    0% { right: -120%; opacity: 0; transform: translateY(-50%) scale(1.1); }
-    20% { opacity: 1; }
-    70% { right: 5%; opacity: 1; transform: translateY(-50%) scale(1); }
-    75% { right: 7%; transform: translateY(-50%) scale(1.02); }
-    80% { right: 5%; transform: translateY(-50%) scale(0.99); }
-    100% { right: 5%; opacity: 1; transform: translateY(-50%) scale(1); }
+  @keyframes carFadeIn {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
   }
-
-  .dust {
-    position: absolute; top: 65%; left: 0;
-    width: 100%; height: 200px;
-    transform: translateY(-50%);
-    pointer-events: none; z-index: 1;
-    opacity: 0;
-    animation: dustFade 2s 3.5s forwards;
-  }
-  .dust span {
-    position: absolute; width: 8px; height: 8px;
-    border-radius: 50%; background: rgba(77, 166, 255, 0.4);
-    filter: blur(2px);
-  }
-  .dust span:nth-child(1) { left: 20%; top: 60%; animation: dustFloat 2s infinite; }
-  .dust span:nth-child(2) { left: 25%; top: 40%; animation: dustFloat 2.5s infinite 0.3s; }
-  .dust span:nth-child(3) { left: 30%; top: 70%; animation: dustFloat 1.8s infinite 0.6s; }
-  .dust span:nth-child(4) { left: 15%; top: 55%; animation: dustFloat 2.2s infinite 0.9s; }
-  .dust span:nth-child(5) { left: 22%; top: 30%; animation: dustFloat 2.4s infinite 1.2s; }
-  @keyframes dustFloat {
-    0% { transform: translate(0, 0) scale(0.5); opacity: 0.5; }
-    100% { transform: translate(-40px, -30px) scale(1.5); opacity: 0; }
-  }
-  @keyframes dustFade { to { opacity: 1; } }
 
   /* ===================================
      MAIN CONTENT
@@ -416,8 +378,8 @@
     .legal { justify-content: center; flex-wrap: wrap; }
     .splash-name { font-size: 14px; letter-spacing: 2px; padding: 0 20px; }
     .splash-name strong { font-size: 18px; letter-spacing: 3px; }
-    .splash-logo { width: 60px; height: 60px; font-size: 12px; }
-    .splash-car { width: 260px; }
+    .splash-logo { width: 60px; height: 60px; font-size: 12px; margin-bottom: 18px; }
+    .splash-car { width: 300px; }
     .slide-menu { padding: 85px 28px 30px; }
     .menu-item { font-size: 17px; padding: 20px 0; }
   }
@@ -429,15 +391,11 @@
   <div class="splash" id="splash">
     <div class="splash-logo">BMW</div>
     <div class="splash-name">
-      Looking for a car?<br>
+      Looking for a car?
       <strong>Better call Ehsan</strong>
     </div>
-    <div class="speed-trail"></div>
-    <div class="dust">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
 
-    <!-- SPLASH VIDEO -->
+    <!-- SPLASH VIDEO (زیر اسپینر) -->
     <video class="splash-car" autoplay muted loop playsinline preload="auto">
       <source src="splash.mp4" type="video/mp4">
     </video>
@@ -589,7 +547,7 @@
       setTimeout(() => {
         document.getElementById('splash').classList.add('hide');
         document.getElementById('mainContent').classList.add('show');
-      }, 5000);
+      }, 8000);
     });
 
     const menuToggle = document.getElementById('menuToggle');
