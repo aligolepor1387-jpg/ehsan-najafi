@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ehsan Najafi</title>
+<title>Ehsan Najafi | BMW</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -34,7 +34,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 10px; font-weight: bold; color: #000;
   }
-  nav { display: flex; gap: 40px; }
+  nav { display: flex; gap: 45px; }
   nav a {
     color: #1a1a1a; text-decoration: none;
     font-size: 13px; font-weight: 400; letter-spacing: 1.5px;
@@ -42,13 +42,16 @@
     padding-bottom: 4px;
     border-bottom: 1px solid transparent;
   }
-  nav a:hover { color: #0066b1; border-bottom-color: #0066b1; }
+  nav a:hover, nav a.active {
+    color: #0066b1;
+    border-bottom-color: #0066b1;
+  }
 
-  /* ===== HERO (car with lights) ===== */
+  /* ===== HERO ===== */
   .hero {
     position: relative;
-    min-height: 90vh;
-    background: #f5f5f5;
+    min-height: 95vh;
+    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,35 +61,54 @@
   }
   .hero-title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     z-index: 3;
   }
   .hero-title h1 {
-    font-size: 52px;
+    font-size: 58px;
     font-weight: 200;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: #1a1a1a;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
+    line-height: 1.1;
   }
   .hero-title h1 strong { font-weight: 500; }
   .hero-title p {
     font-size: 12px;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     color: #999;
     text-transform: uppercase;
+    margin-bottom: 35px;
+  }
+  .hero-btn {
+    display: inline-block;
+    padding: 16px 45px;
+    background: transparent;
+    color: #1a1a1a;
+    text-decoration: none;
+    border: 1.5px solid #1a1a1a;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+  .hero-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
   }
 
   .car-wrapper {
     position: relative;
     width: 100%;
-    max-width: 850px;
+    max-width: 900px;
     z-index: 2;
   }
   .car-image {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 25px 45px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.18));
   }
 
   .headlight-glow {
@@ -126,21 +148,27 @@
     100% { opacity: 0.9; transform: scale(1); }
   }
 
-  /* ===== SECTION ===== */
-  .section {
-    max-width: 1100px;
-    margin: 0 auto;
+  /* ===== MODELS SECTION ===== */
+  .models-section {
     padding: 100px 60px;
+    background: #fafafa;
+    border-top: 1px solid #ebebeb;
   }
   .section-head {
-    margin-bottom: 50px;
+    max-width: 1300px;
+    margin: 0 auto 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   .section-head h2 {
-    font-size: 42px;
+    font-size: 46px;
     font-weight: 200;
     letter-spacing: 1px;
     color: #1a1a1a;
-    margin-bottom: 12px;
+    line-height: 1.1;
   }
   .section-head h2 strong { font-weight: 500; }
   .section-head .sub {
@@ -148,173 +176,104 @@
     letter-spacing: 4px;
     color: #999;
     text-transform: uppercase;
-  }
-  .section p.lead {
-    font-size: 17px;
-    line-height: 2;
-    color: #555;
-    max-width: 750px;
+    padding-bottom: 8px;
   }
 
-  /* ===== SERVICES / SKILLS (BMW style - no emoji) ===== */
-  .services {
+  .models-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px;
-    background: #ebebeb;
-    border: 1px solid #ebebeb;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
   }
-  .service {
-    background: #fff;
-    padding: 45px 35px;
-    transition: all 0.3s;
+  .model-card {
     text-decoration: none;
     color: #1a1a1a;
     display: block;
+    transition: all 0.3s;
   }
-  .service:hover {
-    background: #fafafa;
+  .model-card:hover .model-img img {
+    transform: scale(1.05);
   }
-  .service .num {
-    font-size: 12px;
-    color: #999;
-    letter-spacing: 3px;
+  .model-img {
+    height: 200px;
+    overflow: hidden;
+    background: #f0f0f0;
     margin-bottom: 25px;
   }
-  .service h3 {
+  .model-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .model-info h3 {
     font-size: 22px;
     font-weight: 400;
     letter-spacing: 0.5px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
-  .service .line {
-    width: 30px;
-    height: 1px;
-    background: #0066b1;
-    margin-bottom: 20px;
-    transition: width 0.3s;
-  }
-  .service:hover .line { width: 60px; }
-  .service p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.8;
-  }
-
-  /* ===== PROJECTS ===== */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  .project {
-    background: #fafafa;
-    padding: 45px 35px;
-    transition: all 0.3s;
-    text-decoration: none;
-    color: #1a1a1a;
-    display: block;
-    border: 1px solid #ebebeb;
-  }
-  .project:hover {
-    border-color: #1a1a1a;
-    transform: translateY(-4px);
-  }
-  .project .num {
-    font-size: 12px;
-    color: #999;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-  }
-  .project h3 {
-    font-size: 22px;
-    font-weight: 400;
-    margin-bottom: 12px;
-  }
-  .project p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-  .project .arrow {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #0066b1;
-    text-transform: uppercase;
-  }
-
-  /* ===== CONTACT ===== */
-  .contact-section {
-    background: #1a1a1a;
-    padding: 100px 60px;
-    color: #fff;
-  }
-  .contact-wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .contact-wrap h2 {
-    font-size: 42px;
-    font-weight: 200;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-  }
-  .contact-wrap h2 strong { font-weight: 500; color: #4da6ff; }
-  .contact-wrap .sub {
-    font-size: 12px;
-    letter-spacing: 4px;
-    color: #666;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-  }
-  .contact-form {
-    max-width: 600px;
-  }
-  .form-group { margin-bottom: 25px; }
-  .form-group label {
-    display: block;
-    margin-bottom: 10px;
+  .model-info .type {
     font-size: 11px;
     color: #999;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin-bottom: 22px;
   }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 16px 0;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #333;
+  .model-info .price {
+    font-size: 14px;
+    padding-top: 18px;
+    border-top: 1px solid #ebebeb;
+    color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .model-info .price .arrow {
+    color: #0066b1;
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  .model-card:hover .arrow {
+    transform: translateX(5px);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 120px 60px;
+    text-align: center;
+    background: #fff;
+  }
+  .cta-section h2 {
+    font-size: 48px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  .cta-section h2 strong { font-weight: 500; }
+  .cta-section p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 45px;
+    letter-spacing: 0.5px;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 18px 55px;
+    background: #1a1a1a;
     color: #fff;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 300;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
     transition: all 0.3s;
+    border: 1.5px solid #1a1a1a;
   }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-bottom-color: #4da6ff;
-  }
-  .form-group textarea { resize: vertical; min-height: 100px; }
-  .submit-btn {
-    padding: 18px 50px;
+  .cta-btn:hover {
     background: #fff;
     color: #1a1a1a;
-    border: 2px solid #fff;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    margin-top: 20px;
-  }
-  .submit-btn:hover {
-    background: transparent;
-    color: #fff;
   }
 
   /* ===== FOOTER ===== */
@@ -322,22 +281,21 @@
     background: #1a1a1a;
     color: #666;
     text-align: center;
-    padding: 40px 20px;
+    padding: 45px 20px;
     font-size: 12px;
-    letter-spacing: 1px;
-    border-top: 1px solid #2a2a2a;
+    letter-spacing: 2px;
   }
 
   @media (max-width: 700px) {
     header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-    nav { gap: 18px; }
+    nav { gap: 20px; }
     nav a { font-size: 11px; letter-spacing: 1px; }
-    .hero-title h1 { font-size: 32px; }
-    .section { padding: 60px 25px; }
-    .section-head h2 { font-size: 28px; }
-    .contact-section { padding: 60px 25px; }
-    .contact-wrap h2 { font-size: 28px; }
-    .services, .projects { grid-template-columns: 1fr; }
+    .hero-title h1 { font-size: 34px; letter-spacing: 2px; }
+    .models-section { padding: 60px 25px; }
+    .section-head h2 { font-size: 30px; }
+    .cta-section { padding: 80px 25px; }
+    .cta-section h2 { font-size: 30px; }
+    .models-grid { gap: 30px; }
   }
 </style>
 </head>
@@ -349,11 +307,8 @@
       <span>EHSAN NAJAFI</span>
     </div>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="models.html">Models</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -361,6 +316,7 @@
     <div class="hero-title">
       <h1>EHSAN <strong>NAJAFI</strong></h1>
       <p>Personal Website</p>
+      <a href="models.html" class="hero-btn">Explore Models</a>
     </div>
 
     <div class="car-wrapper">
@@ -370,103 +326,81 @@
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="models-section">
     <div class="section-head">
-      <h2>About <strong>Me</strong></h2>
-      <div class="sub">Who I am</div>
-    </div>
-    <p class="lead">Welcome to my personal website. I'm Ehsan Najafi, passionate about cars, technology, and design. This website is a place where I share my journey, skills, and projects. Feel free to explore and get in touch.</p>
-  </section>
-
-  <section class="section" id="services">
-    <div class="section-head">
-      <h2>What I <strong>Do</strong></h2>
-      <div class="sub">Services</div>
+      <h2>Featured <strong>Models</strong></h2>
+      <div class="sub">BMW Collection</div>
     </div>
 
-    <div class="services">
-      <div class="service">
-        <div class="num">01</div>
-        <h3>Web Development</h3>
-        <div class="line"></div>
-        <p>Building modern, responsive websites with clean code and great user experience.</p>
-      </div>
-      <div class="service">
-        <div class="num">02</div>
-        <h3>UI / UX Design</h3>
-        <div class="line"></div>
-        <p>Designing elegant interfaces that focus on simplicity, clarity, and usability.</p>
-      </div>
-      <div class="service">
-        <div class="num">03</div>
-        <h3>Automotive Consulting</h3>
-        <div class="line"></div>
-        <p>Sharing deep knowledge and passion for the automotive world and premium brands.</p>
-      </div>
-      <div class="service">
-        <div class="num">04</div>
-        <h3>Mobile Apps</h3>
-        <div class="line"></div>
-        <p>Creating fast and intuitive mobile experiences for iOS and Android platforms.</p>
-      </div>
-    </div>
-  </section>
+    <div class="models-grid">
 
-  <section class="section" id="projects">
-    <div class="section-head">
-      <h2>Selected <strong>Projects</strong></h2>
-      <div class="sub">Things I've built</div>
-    </div>
-
-    <div class="projects">
-      <a href="#" class="project">
-        <div class="num">PROJECT 01</div>
-        <h3>Project One</h3>
-        <p>A modern web application built with the latest technologies and clean architecture.</p>
-        <div class="arrow">View Project →</div>
+      <a href="models.html" class="model-card">
+        <div class="model-img">
+          <img src="bmw.jpg" alt="BMW M5">
+        </div>
+        <div class="model-info">
+          <h3>BMW M5</h3>
+          <div class="type">Plug-in Hybrid</div>
+          <div class="price">
+            <span>From €145,200</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
       </a>
-      <a href="#" class="project">
-        <div class="num">PROJECT 02</div>
-        <h3>Project Two</h3>
-        <p>An elegant design system focused on user experience and visual clarity.</p>
-        <div class="arrow">View Project →</div>
+
+      <a href="models.html" class="model-card">
+        <div class="model-img">
+          <img src="bmw-5series.jpg" alt="BMW 5 Series">
+        </div>
+        <div class="model-info">
+          <h3>BMW 5 Series</h3>
+          <div class="type">Luxury Sedan</div>
+          <div class="price">
+            <span>From €65,000</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
       </a>
-      <a href="#" class="project">
-        <div class="num">PROJECT 03</div>
-        <h3>Project Three</h3>
-        <p>A fast and responsive platform built for modern users and real-world needs.</p>
-        <div class="arrow">View Project →</div>
+
+      <a href="models.html" class="model-card">
+        <div class="model-img">
+          <img src="bmw-x5.jpg" alt="BMW X5">
+        </div>
+        <div class="model-info">
+          <h3>BMW X5</h3>
+          <div class="type">Sports Activity Vehicle</div>
+          <div class="price">
+            <span>From €75,000</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
       </a>
+
+      <a href="models.html" class="model-card">
+        <div class="model-img">
+          <img src="bmw-i8.jpg" alt="BMW i8">
+        </div>
+        <div class="model-info">
+          <h3>BMW i8</h3>
+          <div class="type">Hybrid Sports Car</div>
+          <div class="price">
+            <span>From €145,000</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
+      </a>
+
     </div>
   </section>
 
-  <section class="contact-section" id="contact">
-    <div class="contact-wrap">
-      <h2>Get In <strong>Touch</strong></h2>
-      <div class="sub">Send me a message</div>
-
-      <div class="contact-form">
-        <form action="https://formsubmit.co/alialigolipour13871387@gmail.com" method="POST">
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" name="name" required placeholder="Enter your name">
-          </div>
-          <div class="form-group">
-            <label>Your Email</label>
-            <input type="email" name="email" required placeholder="email@example.com">
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea name="message" required placeholder="Write your message..."></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
-    </div>
+  <section class="cta-section">
+    <h2>Sheer Driving <strong>Pleasure</strong></h2>
+    <p>Explore the full BMW collection in stunning 360°</p>
+    <a href="models.html" class="cta-btn">View All Models</a>
   </section>
 
   <footer>
-    © 2026 Ehsan Najafi | All Rights Reserved
+    © 2026 EHSAN NAJAFI
   </footer>
 
 </body>
