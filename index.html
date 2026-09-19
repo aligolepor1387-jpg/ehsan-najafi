@@ -15,9 +15,7 @@
     overflow-x: hidden;
   }
 
-  /* ===================================
-     SPLASH SCREEN (بدون ویدیو)
-     =================================== */
+  /* SPLASH SCREEN (بدون ویدیو) */
   .splash {
     position: fixed;
     top: 0; left: 0;
@@ -53,7 +51,7 @@
   .splash-name {
     font-size: 22px; font-weight: 200; letter-spacing: 5px;
     color: #fff; opacity: 0;
-    animation: nameIn 1s 1.5s forwards;
+    animation: nameIn 1s 0.8s forwards;
     text-align: center; z-index: 5;
     line-height: 1.8;
     text-shadow: 0 0 40px rgba(77,166,255,0.8);
@@ -70,9 +68,7 @@
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* ===================================
-     MAIN CONTENT
-     =================================== */
+  /* MAIN CONTENT */
   .main-content {
     opacity: 0;
     transition: opacity 0.8s 0.3s;
@@ -370,7 +366,7 @@
 </head>
 <body>
 
-  <!-- SPLASH SCREEN (بدون ویدیو) -->
+  <!-- SPLASH SCREEN -->
   <div class="splash" id="splash">
     <div class="splash-logo">BMW</div>
     <div class="splash-name">
@@ -429,7 +425,6 @@
 
     <!-- HERO -->
     <section class="hero">
-      <!-- HERO VIDEO (پس‌زمینه) -->
       <video class="hero-video-bg" autoplay muted loop playsinline preload="auto" poster="bmw.jpg">
         <source src="hero.mp4" type="video/mp4">
       </video>
@@ -521,11 +516,12 @@
   </div>
 
   <script>
+    // Splash: 3 seconds
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hide');
         document.getElementById('mainContent').classList.add('show');
-      }, 5000);
+      }, 3000);
     });
 
     const menuToggle = document.getElementById('menuToggle');
