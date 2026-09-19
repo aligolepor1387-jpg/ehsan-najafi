@@ -206,7 +206,6 @@
   }
   .slide-menu.open { right: 0; }
 
-  /* Close button (×) - بدون دایره */
   .close-menu {
     position: absolute;
     top: 25px;
@@ -321,7 +320,7 @@
   .hero-title h1 {
     font-size: 42px; font-weight: 200;
     letter-spacing: 2px; color: #fff;
-    margin-bottom: 35px; line-height: 1.4;
+    margin-bottom: 40px; line-height: 1.4;
     text-shadow: 0 0 40px rgba(0,0,0,0.9);
   }
   .hero-title h1 strong {
@@ -329,26 +328,70 @@
     font-size: 50px; letter-spacing: 3px;
     text-shadow: 0 0 40px rgba(77,166,255,0.6);
   }
+
+  /* ===== BUTTONS ===== */
+  .hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Primary button (آبی) */
   .hero-btn {
-    display: inline-block; padding: 16px 45px;
-    background: #0066b1; color: #fff;
+    display: inline-block;
+    padding: 16px 38px;
+    background: #0066b1;
+    color: #fff;
     text-decoration: none;
-    border: 1.5px solid #4da6ff;
-    font-size: 12px; letter-spacing: 3px;
-    text-transform: uppercase; font-weight: 500;
+    border: 1.5px solid #0066b1;
+    border-radius: 4px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
     transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 25px rgba(77,166,255,0.5);
     will-change: transform;
+    cursor: pointer;
   }
   .hero-btn:hover {
-    background: #4da6ff; color: #000;
-    box-shadow: 0 0 40px rgba(77,166,255,0.9);
+    background: #1a7fd4;
+    border-color: #1a7fd4;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(77,166,255,0.6);
     transform: translateY(-2px);
   }
   .hero-btn:active {
+    transform: translateY(0);
+  }
+
+  /* Secondary button (شفاف با حاشیه) */
+  .hero-btn-outline {
+    display: inline-block;
+    padding: 16px 38px;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    border: 1.5px solid #fff;
+    border-radius: 4px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    cursor: pointer;
+  }
+  .hero-btn-outline:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+  }
+  .hero-btn-outline:active {
     transform: translateY(0);
   }
 
@@ -475,6 +518,11 @@
     .account-btn svg { width: 24px; height: 24px; }
     .menu-toggle span { width: 26px; }
 
+    .hero-btn, .hero-btn-outline {
+      padding: 14px 30px;
+      font-size: 14px;
+    }
+
     .specs-section { padding: 60px 25px; }
     .section-head h2 { font-size: 30px; }
     .cta-section { padding: 80px 25px; }
@@ -537,7 +585,10 @@
           Looking for a car?<br>
           <strong>Better call Ehsan</strong>
         </h1>
-        <a href="models.html" class="hero-btn">Explore BMW M5</a>
+        <div class="hero-buttons">
+          <a href="models.html" class="hero-btn">Explore BMW M5</a>
+          <a href="#" class="hero-btn-outline">See all models</a>
+        </div>
       </div>
     </section>
 
@@ -602,7 +653,10 @@
     <section class="cta-section">
       <h2>Sheer Driving <strong>Pleasure</strong></h2>
       <p>Explore the BMW M5 in stunning 360°</p>
-      <a href="models.html" class="hero-btn">View 360°</a>
+      <div class="hero-buttons">
+        <a href="models.html" class="hero-btn">View 360°</a>
+        <a href="#" class="hero-btn-outline">Learn more</a>
+      </div>
     </section>
 
     <!-- FOOTER -->
