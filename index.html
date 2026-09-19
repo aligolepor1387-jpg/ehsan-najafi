@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ehsan Najafi | Personal Website</title>
+<title>Ehsan Najafi</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -16,14 +16,14 @@
 
   .showcase {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    perspective: 1500px;
+    padding: 100px 20px 60px;
   }
   .showcase::before {
     content: '';
@@ -41,13 +41,12 @@
   }
 
   .showcase-title {
-    position: absolute;
-    top: 60px;
     text-align: center;
     z-index: 3;
+    margin-bottom: 30px;
   }
   .showcase-title h1 {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 300;
     letter-spacing: 6px;
     color: #fff;
@@ -55,96 +54,44 @@
   }
   .showcase-title h1 strong { font-weight: 700; color: #4da6ff; }
   .showcase-title p {
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 4px;
     color: #4da6ff;
     text-transform: uppercase;
     font-weight: 300;
   }
 
-  .car-wrapper {
+  .spin-container {
     position: relative;
     width: 100%;
-    max-width: 750px;
+    max-width: 800px;
     z-index: 2;
-    transform-style: preserve-3d;
-    transition: transform 0.1s linear;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(77,166,255,0.2);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
   }
 
-  .car-image {
+  .spin-container iframe {
     width: 100%;
-    height: auto;
+    height: 480px;
+    border: none;
     display: block;
-    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6));
   }
 
-  .headlight-glow {
-    position: absolute;
-    top: 47%;
-    right: 4.5%;
-    width: 55px;
-    height: 20px;
-    background: radial-gradient(ellipse, #fff 0%, #cce6ff 30%, rgba(77,166,255,0.8) 60%, transparent 100%);
-    border-radius: 50%;
-    opacity: 0;
-    filter: blur(6px);
-    animation: headlightOn 1.5s 0.5s forwards;
-    box-shadow: 0 0 40px 15px rgba(255,255,255,0.9), 0 0 80px 30px rgba(77,166,255,0.6);
-  }
-  @keyframes headlightOn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-
-  .taillight-glow {
-    position: absolute;
-    top: 39%;
-    left: 3%;
-    width: 40px;
-    height: 15px;
-    background: radial-gradient(ellipse, #ff3333 0%, #ff0000 40%, rgba(200,0,0,0.8) 70%, transparent 100%);
-    border-radius: 40%;
-    opacity: 0;
-    filter: blur(5px);
-    animation: taillightOn 1.5s 1s forwards;
-    box-shadow: 0 0 30px 12px rgba(255,51,51,0.9), 0 0 60px 25px rgba(255,0,0,0.5);
-  }
-  @keyframes taillightOn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0.9; transform: scale(1); }
-  }
-
-  .light-beam-front {
-    position: absolute;
-    top: 55%;
-    right: -20%;
-    width: 200px;
-    height: 60px;
-    background: linear-gradient(to left, rgba(255,255,255,0.6), transparent);
-    border-radius: 50%;
-    opacity: 0;
-    filter: blur(20px);
-    animation: beamOn 1.5s 0.8s forwards;
-    pointer-events: none;
-  }
-  @keyframes beamOn {
-    to { opacity: 0.7; }
-  }
-
-  .showcase-hint {
-    position: absolute;
-    bottom: 50px;
+  .spin-hint {
+    text-align: center;
     color: rgba(255,255,255,0.6);
     font-size: 13px;
     letter-spacing: 2px;
-    animation: bounce 2s infinite;
+    margin-top: 25px;
     z-index: 3;
+    animation: bounce 2s infinite;
   }
   @keyframes bounce {
     0%, 100% { transform: translateY(0); opacity: 0.6; }
-    50% { transform: translateY(-10px); opacity: 1; }
+    50% { transform: translateY(-8px); opacity: 1; }
   }
 
   header {
@@ -365,11 +312,10 @@
   @media (max-width: 600px) {
     header { flex-direction: column; gap: 15px; padding: 15px; }
     nav a { margin: 0 10px; font-size: 11px; }
-    .showcase-title h1 { font-size: 24px; letter-spacing: 3px; }
+    .showcase-title h1 { font-size: 26px; letter-spacing: 3px; }
     .section-title { font-size: 26px; }
     .section { padding: 60px 20px; }
-    .headlight-glow { width: 35px; height: 14px; }
-    .taillight-glow { width: 28px; height: 12px; }
+    .spin-container iframe { height: 350px; }
   }
 </style>
 </head>
@@ -381,9 +327,9 @@
       <span>Ehsan Najafi</span>
     </div>
     <nav>
-      <a href="#home">Home</a>
+      <a href="index.html">Home</a>
+      <a href="models.html">Models</a>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -395,14 +341,15 @@
       <p>Personal Website</p>
     </div>
 
-    <div class="car-wrapper" id="car">
-      <img src="bmw.jpg" alt="BMW M5" class="car-image">
-      <div class="headlight-glow"></div>
-      <div class="taillight-glow"></div>
-      <div class="light-beam-front"></div>
+    <div class="spin-container">
+      <iframe
+        src="https://aligholipour360.sirv.com/Spins/Bmw360/Bmw/Bmw360%20M5.spin"
+        width="100%" height="480" frameborder="0"
+        allowfullscreen>
+      </iframe>
     </div>
 
-    <div class="showcase-hint">↓ SCROLL TO ROTATE ↓</div>
+    <div class="spin-hint">← DRAG TO ROTATE 360° →</div>
   </section>
 
   <section class="section" id="about">
@@ -487,23 +434,6 @@
   <footer>
     © 2026 Ehsan Najafi | All Rights Reserved
   </footer>
-
-  <script>
-    const car = document.getElementById('car');
-    const showcase = document.querySelector('.showcase');
-
-    window.addEventListener('scroll', () => {
-      const rect = showcase.getBoundingClientRect();
-      const showcaseHeight = showcase.offsetHeight;
-
-      let progress = -rect.top / (showcaseHeight * 0.8);
-      if (progress < 0) progress = 0;
-      if (progress > 1) progress = 1;
-
-      const rotation = progress * 360;
-      car.style.transform = `rotateY(${rotation}deg)`;
-    });
-  </script>
 
 </body>
 </html>
