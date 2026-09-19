@@ -15,100 +15,166 @@
     overflow-x: hidden;
   }
 
-  /* ===== HEADER ===== */
-  header {
-    position: sticky; top: 0; z-index: 100;
-    padding: 22px 60px;
-    display: flex; justify-content: space-between; align-items: center;
+  /* ===== TOP BAR (with hamburger) ===== */
+  .top-bar {
     background: #fff;
-    border-bottom: 1px solid #ebebeb;
+    padding: 14px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
-  .logo {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 18px; font-weight: 400; letter-spacing: 4px;
-  }
-  .logo-circle {
+  .bmw-logo {
     width: 42px; height: 42px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
     border: 3px solid #1a1a1a;
     display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: bold; color: #000;
+    font-size: 9px; font-weight: bold; color: #000;
+    flex-shrink: 0;
   }
-  nav { display: flex; gap: 45px; }
-  nav a {
-    color: #1a1a1a; text-decoration: none;
-    font-size: 13px; font-weight: 400; letter-spacing: 1.5px;
-    transition: color 0.3s; text-transform: uppercase;
-    padding-bottom: 4px;
-    border-bottom: 1px solid transparent;
+  .center-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+    font-weight: 400;
   }
-  nav a:hover, nav a.active {
-    color: #0066b1;
-    border-bottom-color: #0066b1;
+  .menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 60;
   }
+  .menu-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: #1a1a1a;
+    transition: all 0.3s;
+  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ===== SLIDE MENU ===== */
+  .slide-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: #fff;
+    z-index: 55;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    padding: 100px 40px 40px;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+  }
+  .slide-menu.open { right: 0; }
+  .menu-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    z-index: 54;
+  }
+  .menu-overlay.open { opacity: 1; visibility: visible; }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+  .menu-item:hover { color: #0066b1; padding-left: 8px; }
+  .menu-item .arrow { color: #999; font-size: 18px; font-weight: 300; }
+  .divider { height: 1px; background: #d5d5d5; margin: 30px 0; }
+  .m-stripes { display: inline-flex; margin-left: 8px; vertical-align: middle; }
+  .m-stripes span { display: inline-block; width: 4px; height: 14px; }
+  .m-stripes .lightblue { background: #66b8e0; }
+  .m-stripes .darkblue { background: #003d7a; }
+  .m-stripes .red { background: #e7222e; }
 
   /* ===== HERO ===== */
   .hero {
     position: relative;
-    min-height: 95vh;
+    min-height: 90vh;
     background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 20px 60px;
+    padding: 60px 20px 40px;
     overflow: hidden;
   }
   .hero-title {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     z-index: 3;
   }
+  .hero-title h2 {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 400;
+  }
   .hero-title h1 {
-    font-size: 58px;
+    font-size: 54px;
     font-weight: 200;
     letter-spacing: 4px;
     color: #1a1a1a;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     line-height: 1.1;
   }
   .hero-title h1 strong { font-weight: 500; }
-  .hero-title p {
-    font-size: 12px;
-    letter-spacing: 6px;
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 35px;
-  }
   .hero-btn {
     display: inline-block;
     padding: 16px 45px;
-    background: transparent;
-    color: #1a1a1a;
+    background: #0066b1;
+    color: #fff;
     text-decoration: none;
-    border: 1.5px solid #1a1a1a;
+    border: 1.5px solid #0066b1;
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 500;
     transition: all 0.3s;
   }
   .hero-btn:hover {
-    background: #1a1a1a;
-    color: #fff;
+    background: #004a80;
+    border-color: #004a80;
   }
 
   .car-wrapper {
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 850px;
     z-index: 2;
   }
   .car-image {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.18));
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.2));
   }
 
   .headlight-glow {
@@ -148,7 +214,7 @@
     100% { opacity: 0.9; transform: scale(1); }
   }
 
-  /* ===== SPECS SECTION ===== */
+  /* ===== SPECS ===== */
   .specs-section {
     padding: 100px 60px;
     background: #fafafa;
@@ -159,7 +225,7 @@
     margin: 0 auto 60px;
   }
   .section-head h2 {
-    font-size: 46px;
+    font-size: 42px;
     font-weight: 200;
     letter-spacing: 1px;
     color: #1a1a1a;
@@ -172,7 +238,6 @@
     color: #999;
     text-transform: uppercase;
   }
-
   .specs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -185,7 +250,6 @@
   .spec-box {
     background: #fff;
     padding: 45px 35px;
-    text-align: left;
   }
   .spec-box .value {
     font-size: 42px;
@@ -220,23 +284,6 @@
     font-size: 16px;
     color: #777;
     margin-bottom: 45px;
-  }
-  .cta-btn {
-    display: inline-block;
-    padding: 18px 55px;
-    background: #1a1a1a;
-    color: #fff;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 400;
-    transition: all 0.3s;
-    border: 1.5px solid #1a1a1a;
-  }
-  .cta-btn:hover {
-    background: #fff;
-    color: #1a1a1a;
   }
 
   /* ===== FOOTER ===== */
@@ -306,10 +353,7 @@
     letter-spacing: 1px;
     color: #777;
   }
-  .legal {
-    display: flex;
-    gap: 25px;
-  }
+  .legal { display: flex; gap: 25px; }
   .legal a {
     font-size: 12px;
     color: #777;
@@ -320,10 +364,10 @@
   .legal a:hover { color: #4da6ff; }
 
   @media (max-width: 700px) {
-    header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-    nav { gap: 20px; }
-    nav a { font-size: 11px; }
-    .hero-title h1 { font-size: 34px; letter-spacing: 2px; }
+    .top-bar { padding: 12px 18px; }
+    .center-text { font-size: 11px; }
+    .bmw-logo { width: 36px; height: 36px; font-size: 8px; }
+    .hero-title h1 { font-size: 32px; letter-spacing: 2px; }
     .specs-section { padding: 60px 25px; }
     .section-head h2 { font-size: 30px; }
     .cta-section { padding: 80px 25px; }
@@ -332,27 +376,79 @@
     .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .legal { justify-content: center; flex-wrap: wrap; }
+    .slide-menu { padding: 90px 25px 30px; }
+    .menu-item { font-size: 16px; padding: 18px 0; }
   }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <div class="logo-circle">EN</div>
-      <span>EHSAN NAJAFI</span>
+  <!-- ===== TOP BAR ===== -->
+  <div class="top-bar">
+    <div class="bmw-logo">BMW</div>
+    <div class="center-text">
+      <span>📍</span>
+      <span>Choose your local BMW Center</span>
     </div>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="models.html">Models</a>
-    </nav>
-  </header>
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
 
+  <!-- ===== SLIDE MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="slide-menu" id="slideMenu">
+    <a href="index.html" class="menu-item">
+      <span>Home</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="models.html" class="menu-item">
+      <span>Models</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="divider"></div>
+
+    <a href="#" class="menu-item">
+      <span>All Models</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>SUVs</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>Sedans</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>Coupes</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>Electrified ⚡</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>BMW M
+        <span class="m-stripes">
+          <span class="lightblue"></span>
+          <span class="darkblue"></span>
+          <span class="red"></span>
+        </span>
+      </span>
+      <span class="arrow">›</span>
+    </a>
+  </div>
+
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="hero-title">
+      <h2>Personal Website</h2>
       <h1>EHSAN <strong>NAJAFI</strong></h1>
-      <p>Personal Website</p>
-      <a href="models.html" class="hero-btn">Explore 360°</a>
+      <a href="models.html" class="hero-btn">Explore BMW M5</a>
     </div>
 
     <div class="car-wrapper">
@@ -362,6 +458,7 @@
     </div>
   </section>
 
+  <!-- ===== SPECS ===== -->
   <section class="specs-section">
     <div class="section-head">
       <h2>BMW <strong>M5</strong></h2>
@@ -388,12 +485,14 @@
     </div>
   </section>
 
+  <!-- ===== CTA ===== -->
   <section class="cta-section">
     <h2>Sheer Driving <strong>Pleasure</strong></h2>
     <p>Explore the BMW M5 in stunning 360°</p>
-    <a href="models.html" class="cta-btn">View 360°</a>
+    <a href="models.html" class="hero-btn">View 360°</a>
   </section>
 
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-wrap">
       <div class="footer-top">
@@ -431,6 +530,24 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      slideMenu.classList.toggle('open');
+      menuOverlay.classList.toggle('open');
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      slideMenu.classList.remove('open');
+      menuOverlay.classList.remove('open');
+    });
+  </script>
 
 </body>
 </html>
