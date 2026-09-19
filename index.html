@@ -7,15 +7,20 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
     background: #0a0a0a;
     color: #fff;
     font-weight: 300;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* SPLASH SCREEN */
+  /* ===================================
+     SPLASH SCREEN
+     =================================== */
   .splash {
     position: fixed;
     top: 0; left: 0;
@@ -27,8 +32,10 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 20px;
+    will-change: opacity;
   }
   .splash.hide { opacity: 0; visibility: hidden; }
 
@@ -40,21 +47,25 @@
     font-size: 20px; font-weight: bold; color: #000;
     margin-bottom: 30px;
     opacity: 0;
-    transform: scale(0.3);
-    animation: logoIn 1s 0.2s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.4);
+    animation: logoIn 0.9s 0.15s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 0 80px rgba(77,166,255,0.9), 0 0 160px rgba(0,102,177,0.6);
     position: relative; z-index: 5;
     flex-shrink: 0;
+    will-change: transform, opacity;
   }
-  @keyframes logoIn { to { opacity: 1; transform: scale(1); } }
+  @keyframes logoIn {
+    to { opacity: 1; transform: scale(1); }
+  }
 
   .splash-name {
     font-size: 22px; font-weight: 200; letter-spacing: 5px;
     color: #fff; opacity: 0;
-    animation: nameIn 1s 0.8s forwards;
+    animation: nameIn 0.8s 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center; z-index: 5;
     line-height: 1.8;
     text-shadow: 0 0 40px rgba(77,166,255,0.8);
+    will-change: transform, opacity;
   }
   .splash-name strong {
     font-weight: 600; color: #4da6ff;
@@ -64,11 +75,10 @@
     text-shadow: 0 0 50px rgba(77,166,255,1);
   }
   @keyframes nameIn {
-    0% { opacity: 0; transform: translateY(20px); }
+    0% { opacity: 0; transform: translateY(15px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* SPEED LINE (نور آبی که از کنار صفحه رد می‌شه) */
   .speed-trail {
     position: absolute;
     top: 65%;
@@ -78,90 +88,139 @@
     background: linear-gradient(90deg, transparent, #4da6ff, #fff, #4da6ff, transparent);
     box-shadow: 0 0 30px #4da6ff, 0 0 60px #0066b1;
     opacity: 0;
-    animation: trailPass 3s 1.5s infinite;
+    animation: trailPass 3.5s 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 4;
+    will-change: left, opacity;
   }
-
   @keyframes trailPass {
     0% { left: -100%; opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
     100% { left: 100%; opacity: 0; }
   }
 
-  /* MAIN CONTENT */
+  /* ===================================
+     MAIN CONTENT
+     =================================== */
   .main-content {
     opacity: 0;
-    transition: opacity 0.8s 0.3s;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
     background: #0a0a0a;
+    will-change: opacity;
   }
   .main-content.show { opacity: 1; }
 
-  /* TOP BAR */
+  /* ===================================
+     TOP BAR (شفاف + محو شدن با اسکرول)
+     =================================== */
   .top-bar {
-    background: #000; padding: 14px 25px;
+    background: transparent;
+    padding: 18px 30px;
     display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid #1a1a1a;
-    position: sticky; top: 0; z-index: 50;
+    border-bottom: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 50;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
   }
+  .top-bar.hidden {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
   .bmw-logo {
-    width: 42px; height: 42px; border-radius: 50%;
+    width: 50px; height: 50px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
-    border: 3px solid #4da6ff;
+    border: 3px solid rgba(255,255,255,0.9);
     display: flex; align-items: center; justify-content: center;
-    font-size: 9px; font-weight: bold; color: #000;
+    font-size: 10px; font-weight: bold; color: #000;
     flex-shrink: 0;
-    box-shadow: 0 0 20px rgba(77,166,255,0.5);
+    box-shadow: 0 0 25px rgba(77,166,255,0.6);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-  .center-text {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: #888; font-weight: 400;
+  .bmw-logo:hover {
+    box-shadow: 0 0 40px rgba(77,166,255,0.9);
+    transform: scale(1.05);
   }
-  .top-right { display: flex; align-items: center; gap: 12px; }
+
+  .top-right {
+    display: flex; align-items: center; gap: 18px;
+  }
+
   .account-btn {
-    display: flex; align-items: center; gap: 8px;
-    background: none; border: 1.5px solid #4da6ff;
-    padding: 8px 16px; cursor: pointer;
-    font-family: inherit; font-size: 12px;
-    letter-spacing: 1px; color: #4da6ff;
-    font-weight: 500; transition: all 0.3s;
-    text-transform: uppercase; text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 300;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.2s ease;
+    text-decoration: none;
+    will-change: transform;
   }
   .account-btn:hover {
-    background: #4da6ff; color: #000;
-    box-shadow: 0 0 20px rgba(77,166,255,0.6);
+    color: #4da6ff;
+    transform: scale(1.15);
+  }
+  .account-btn:active {
+    transform: scale(1);
   }
 
+  /* Hamburger */
   .menu-toggle {
     background: none; border: none; cursor: pointer;
-    padding: 8px; display: flex; flex-direction: column;
-    gap: 5px; z-index: 60;
+    padding: 8px;
+    display: flex; flex-direction: column;
+    gap: 6px;
+    z-index: 60;
   }
   .menu-toggle span {
-    display: block; width: 26px; height: 2px;
-    background: #4da6ff; transition: all 0.3s;
-    box-shadow: 0 0 8px rgba(77,166,255,0.8);
+    display: block; width: 30px; height: 2px;
+    background: #fff;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease,
+                background 0.3s ease;
+    will-change: transform;
   }
-  .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle:hover span {
+    background: #4da6ff;
+  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
-  .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
+  /* ===================================
+     SLIDE MENU
+     =================================== */
   .slide-menu {
     position: fixed; top: 0; right: -100%;
     width: 100%; max-width: 420px; height: 100vh;
     background: #0a0a0a; z-index: 55;
-    transition: right 0.4s ease; overflow-y: auto;
+    transition: right 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
     padding: 90px 45px 40px;
     box-shadow: -10px 0 40px rgba(0,102,177,0.2);
     border-left: 1px solid #1a1a1a;
+    will-change: right;
   }
   .slide-menu.open { right: 0; }
+
   .menu-overlay {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.7);
     opacity: 0; visibility: hidden;
-    transition: all 0.4s; z-index: 54;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 54;
+    will-change: opacity;
   }
   .menu-overlay.open { opacity: 1; visibility: visible; }
 
@@ -171,14 +230,22 @@
     border-bottom: 1px solid #1a1a1a;
     text-decoration: none; color: #fff;
     font-size: 20px; font-weight: 400;
-    letter-spacing: 0.3px; transition: all 0.3s;
+    letter-spacing: 0.3px;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .menu-item:hover { color: #4da6ff; padding-left: 8px; }
+  .menu-item:hover {
+    color: #4da6ff;
+    padding-left: 8px;
+  }
   .menu-item .arrow {
     color: #4da6ff; font-size: 20px;
-    font-weight: 300; transition: transform 0.3s;
+    font-weight: 300;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .menu-item:hover .arrow { transform: translateX(4px); }
+  .menu-item:hover .arrow {
+    transform: translateX(4px);
+  }
   .divider { height: 1px; background: #1a1a1a; margin: 32px 0; }
 
   .m-stripes { display: inline-flex; margin-left: 10px; vertical-align: middle; }
@@ -186,16 +253,17 @@
   .m-stripes .lightblue { background: #66b8e0; }
   .m-stripes .darkblue { background: #003d7a; }
   .m-stripes .red { background: #e7222e; }
-
   .alpina-mark { color: #4da6ff; margin-left: 8px; font-size: 14px; }
 
-  /* HERO */
+  /* ===================================
+     HERO
+     =================================== */
   .hero {
-    position: relative; min-height: 90vh;
+    position: relative; min-height: 100vh;
     background: #000;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 80px 20px; overflow: hidden;
+    padding: 100px 20px 80px; overflow: hidden;
   }
   .hero-video-bg {
     position: absolute;
@@ -205,6 +273,7 @@
     z-index: 0;
     opacity: 0.55;
     filter: brightness(0.75) saturate(1.2);
+    will-change: opacity;
   }
   .hero::after {
     content: '';
@@ -213,6 +282,7 @@
     width: 100%; height: 100%;
     background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
     z-index: 1;
+    pointer-events: none;
   }
   .hero-title {
     text-align: center;
@@ -239,18 +309,29 @@
   .hero-btn {
     display: inline-block; padding: 16px 45px;
     background: #0066b1; color: #fff;
-    text-decoration: none; border: 1.5px solid #4da6ff;
+    text-decoration: none;
+    border: 1.5px solid #4da6ff;
     font-size: 12px; letter-spacing: 3px;
     text-transform: uppercase; font-weight: 500;
-    transition: all 0.3s;
+    transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 25px rgba(77,166,255,0.5);
+    will-change: transform;
   }
   .hero-btn:hover {
     background: #4da6ff; color: #000;
     box-shadow: 0 0 40px rgba(77,166,255,0.9);
+    transform: translateY(-2px);
+  }
+  .hero-btn:active {
+    transform: translateY(0);
   }
 
-  /* SPECS */
+  /* ===================================
+     SPECS
+     =================================== */
   .specs-section {
     padding: 100px 60px; background: #0a0a0a;
     border-top: 1px solid #1a1a1a;
@@ -274,7 +355,9 @@
   }
   .spec-box {
     background: #000; padding: 45px 35px;
-    transition: all 0.4s;
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: background;
   }
   .spec-box:hover {
     background: #0a1929;
@@ -290,7 +373,9 @@
     letter-spacing: 2px; text-transform: uppercase;
   }
 
-  /* CTA */
+  /* ===================================
+     CTA
+     =================================== */
   .cta-section {
     padding: 120px 60px; text-align: center;
     background: #000; border-top: 1px solid #1a1a1a;
@@ -302,7 +387,9 @@
   .cta-section h2 strong { font-weight: 500; color: #4da6ff; }
   .cta-section p { font-size: 16px; color: #888; margin-bottom: 45px; }
 
-  /* FOOTER */
+  /* ===================================
+     FOOTER
+     =================================== */
   footer {
     background: #000; color: #888;
     padding: 80px 60px 35px;
@@ -336,9 +423,13 @@
   .footer-col a {
     display: block; font-size: 13px; color: #888;
     text-decoration: none; margin-bottom: 14px;
-    transition: color 0.3s;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .footer-col a:hover { color: #4da6ff; }
+  .footer-col a:hover {
+    color: #4da6ff;
+    padding-left: 4px;
+  }
 
   .footer-bottom {
     display: flex; justify-content: space-between; align-items: center;
@@ -348,27 +439,28 @@
   .legal { display: flex; gap: 25px; }
   .legal a {
     font-size: 12px; color: #666; text-decoration: none;
-    letter-spacing: 1px; transition: color 0.3s;
+    letter-spacing: 1px;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .legal a:hover { color: #4da6ff; }
 
+  /* ===================================
+     RESPONSIVE
+     =================================== */
   @media (max-width: 700px) {
     .hero-video-bg {
       object-fit: cover;
       object-position: center center;
       opacity: 0.5;
     }
-    .hero-title h1 {
-      font-size: 26px;
-      line-height: 1.5;
-    }
-    .hero-title h1 strong {
-      font-size: 34px;
-    }
-    .top-bar { padding: 12px 18px; }
-    .center-text { font-size: 11px; }
-    .bmw-logo { width: 36px; height: 36px; font-size: 8px; }
-    .account-btn { padding: 6px 10px; font-size: 10px; }
+    .hero-title h1 { font-size: 26px; line-height: 1.5; }
+    .hero-title h1 strong { font-size: 34px; }
+
+    .top-bar { padding: 14px 20px; }
+    .bmw-logo { width: 42px; height: 42px; font-size: 9px; }
+    .account-btn { font-size: 24px; padding: 6px; }
+    .menu-toggle span { width: 26px; }
+
     .specs-section { padding: 60px 25px; }
     .section-head h2 { font-size: 30px; }
     .cta-section { padding: 80px 25px; }
@@ -401,22 +493,34 @@
   <!-- MAIN CONTENT -->
   <div class="main-content" id="mainContent">
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-      <div class="bmw-logo">BMW</div>
-      <div class="center-text">
-        <span>📍</span>
-        <span>Choose your local BMW Center</span>
+    <!-- HERO (هدر داخل Hero برای شفافیت) -->
+    <section class="hero">
+      <!-- TOP BAR (شفاف روی ویدیو) -->
+      <div class="top-bar" id="topBar">
+        <div class="bmw-logo">BMW</div>
+        <div class="top-right">
+          <a href="account.html" class="account-btn" title="Account">👤</a>
+          <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
-      <div class="top-right">
-        <a href="account.html" class="account-btn">👤 Account</a>
-        <button class="menu-toggle" id="menuToggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+
+      <video class="hero-video-bg" autoplay muted loop playsinline preload="auto" poster="bmw.jpg">
+        <source src="hero.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-title">
+        <h2>Personal Website</h2>
+        <h1>
+          Looking for a car?<br>
+          <strong>Better call Ehsan</strong>
+        </h1>
+        <a href="models.html" class="hero-btn">Explore BMW M5</a>
       </div>
-    </div>
+    </section>
 
     <!-- SLIDE MENU -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -445,22 +549,6 @@
       <a href="models.html" class="menu-item"><span>Models 360°</span><span class="arrow">›</span></a>
       <a href="account.html" class="menu-item"><span>Account</span><span class="arrow">›</span></a>
     </div>
-
-    <!-- HERO -->
-    <section class="hero">
-      <video class="hero-video-bg" autoplay muted loop playsinline preload="auto" poster="bmw.jpg">
-        <source src="hero.mp4" type="video/mp4">
-      </video>
-
-      <div class="hero-title">
-        <h2>Personal Website</h2>
-        <h1>
-          Looking for a car?<br>
-          <strong>Better call Ehsan</strong>
-        </h1>
-        <a href="models.html" class="hero-btn">Explore BMW M5</a>
-      </div>
-    </section>
 
     <!-- SPECS -->
     <section class="specs-section">
@@ -547,6 +635,7 @@
       }, 3000);
     });
 
+    // Hamburger menu
     const menuToggle = document.getElementById('menuToggle');
     const slideMenu = document.getElementById('slideMenu');
     const menuOverlay = document.getElementById('menuOverlay');
@@ -561,6 +650,21 @@
       menuToggle.classList.remove('active');
       slideMenu.classList.remove('open');
       menuOverlay.classList.remove('open');
+    });
+
+    // Hide top-bar on scroll
+    const topBar = document.getElementById('topBar');
+    const hero = document.querySelector('.hero');
+
+    window.addEventListener('scroll', () => {
+      const heroHeight = hero.offsetHeight;
+      const scrollY = window.scrollY;
+
+      if (scrollY > heroHeight * 0.3) {
+        topBar.classList.add('hidden');
+      } else {
+        topBar.classList.remove('hidden');
+      }
     });
   </script>
 
