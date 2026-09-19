@@ -15,7 +15,7 @@
     overflow-x: hidden;
   }
 
-  /* SPLASH SCREEN (بدون ویدیو) */
+  /* SPLASH SCREEN */
   .splash {
     position: fixed;
     top: 0; left: 0;
@@ -66,6 +66,27 @@
   @keyframes nameIn {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SPEED LINE (نور آبی که از کنار صفحه رد می‌شه) */
+  .speed-trail {
+    position: absolute;
+    top: 65%;
+    left: -100%;
+    height: 4px;
+    width: 60%;
+    background: linear-gradient(90deg, transparent, #4da6ff, #fff, #4da6ff, transparent);
+    box-shadow: 0 0 30px #4da6ff, 0 0 60px #0066b1;
+    opacity: 0;
+    animation: trailPass 3s 1.5s infinite;
+    z-index: 4;
+  }
+
+  @keyframes trailPass {
+    0% { left: -100%; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
   }
 
   /* MAIN CONTENT */
@@ -359,6 +380,7 @@
     .splash-name { font-size: 16px; letter-spacing: 3px; padding: 0 20px; }
     .splash-name strong { font-size: 22px; letter-spacing: 4px; }
     .splash-logo { width: 80px; height: 80px; font-size: 14px; margin-bottom: 25px; }
+    .speed-trail { width: 70%; height: 3px; }
     .slide-menu { padding: 85px 28px 30px; }
     .menu-item { font-size: 17px; padding: 20px 0; }
   }
@@ -373,6 +395,7 @@
       Looking for a car?
       <strong>Better call Ehsan</strong>
     </div>
+    <div class="speed-trail"></div>
   </div>
 
   <!-- MAIN CONTENT -->
