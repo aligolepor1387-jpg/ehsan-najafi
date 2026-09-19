@@ -8,272 +8,249 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #fafafa;
+    font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+    background: #fff;
     color: #1a1a1a;
+    font-weight: 300;
   }
 
+  /* ===== HEADER (BMW minimal) ===== */
   header {
     position: sticky; top: 0; z-index: 100;
-    padding: 20px 60px;
+    padding: 22px 60px;
     display: flex; justify-content: space-between; align-items: center;
     background: #fff;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid #ebebeb;
   }
   .logo {
     display: flex; align-items: center; gap: 12px;
-    font-size: 20px; font-weight: 600; letter-spacing: 3px;
+    font-size: 18px; font-weight: 400; letter-spacing: 4px;
   }
   .logo-circle {
-    width: 40px; height: 40px; border-radius: 50%;
+    width: 42px; height: 42px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
     border: 3px solid #1a1a1a;
     display: flex; align-items: center; justify-content: center;
     font-size: 10px; font-weight: bold; color: #000;
   }
+  nav { display: flex; gap: 40px; }
   nav a {
-    color: #333; text-decoration: none; margin-left: 35px;
-    font-size: 13px; font-weight: 500; letter-spacing: 1px;
+    color: #1a1a1a; text-decoration: none;
+    font-size: 13px; font-weight: 400; letter-spacing: 1.5px;
     transition: color 0.3s; text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
   }
-  nav a:hover, nav a.active { color: #0066b1; }
+  nav a:hover, nav a.active {
+    color: #0066b1;
+    border-bottom-color: #0066b1;
+  }
 
-  .intro {
-    padding: 80px 60px 40px;
+  /* ===== HERO TITLE ===== */
+  .page-intro {
+    padding: 90px 60px 30px;
     max-width: 1200px;
     margin: 0 auto;
   }
-  .intro h1 {
-    font-size: 52px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    color: #1a1a1a;
-  }
-  .intro h1 strong { font-weight: 700; color: #0066b1; }
-  .intro p {
-    font-size: 16px;
-    color: #777;
-    max-width: 600px;
-    line-height: 1.8;
-  }
-
-  .tabs {
-    display: flex;
-    gap: 35px;
-    padding: 0 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-    border-bottom: 1px solid #e8e8e8;
-  }
-  .tab {
-    padding: 18px 0;
-    font-size: 15px;
-    color: #999;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s;
+  .page-intro h1 {
+    font-size: 56px;
+    font-weight: 200;
     letter-spacing: 1px;
-  }
-  .tab.active {
+    line-height: 1.1;
     color: #1a1a1a;
-    border-bottom-color: #1a1a1a;
-    font-weight: 600;
   }
-  .tab:hover { color: #1a1a1a; }
+  .page-intro h1 strong { font-weight: 500; }
 
-  .spinner-section {
-    background: linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%);
-    padding: 40px 20px 60px;
-    border-bottom: 1px solid #e8e8e8;
-  }
-  .spinner-container {
-    max-width: 1000px;
+  /* ===== MAIN MODEL (M5) ===== */
+  .main-model {
+    max-width: 1300px;
     margin: 0 auto;
-    background: transparent;
+    padding: 40px 60px 80px;
+  }
+  .main-model-title {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+  }
+
+  .spinner-wrap {
+    background: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 40px;
     position: relative;
   }
-  .spinner-container .Sirv {
+  .spinner-wrap .Sirv {
     width: 100%;
-    height: 500px;
+    height: 520px;
   }
-  .spinner-hint {
+  .rotate-hint {
     text-align: center;
-    margin-top: 20px;
+    font-size: 11px;
     color: #999;
-    font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
+    padding-top: 20px;
   }
-  .spinner-hint::before { content: '← '; }
-  .spinner-hint::after { content: ' →'; }
+  .rotate-hint::before { content: '←  '; }
+  .rotate-hint::after { content: '  →'; }
 
-  .model-info {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 70px 60px;
-  }
-  .model-name {
-    font-size: 42px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-  }
-  .model-name strong { font-weight: 700; }
-  .model-tag {
-    display: inline-block;
-    background: #0066b1;
-    color: #fff;
-    font-size: 11px;
-    padding: 5px 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-  }
-  .model-desc {
-    font-size: 16px;
-    line-height: 2;
-    color: #555;
-    max-width: 700px;
-    margin-bottom: 40px;
-  }
-  .specs-row {
+  /* ===== M5 INFO BAR ===== */
+  .info-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
-    padding-top: 35px;
-    border-top: 1px solid #e8e8e8;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    gap: 30px;
   }
-  .spec-item { text-align: left; }
-  .spec-value {
+  .info-left h2 {
     font-size: 32px;
     font-weight: 300;
-    color: #1a1a1a;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .info-left h2 strong { font-weight: 500; }
+  .info-left .subtitle {
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 1px;
+  }
+  .info-right {
+    text-align: right;
+  }
+  .info-right .price-label {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     margin-bottom: 5px;
   }
-  .spec-value strong { font-weight: 700; color: #0066b1; }
+  .info-right .price {
+    font-size: 26px;
+    font-weight: 400;
+    color: #1a1a1a;
+  }
+
+  /* ===== SPECS ===== */
+  .specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    padding: 40px 0;
+  }
+  .spec-item { min-width: 120px; }
+  .spec-value {
+    font-size: 30px;
+    font-weight: 300;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+  .spec-value strong { font-weight: 500; }
   .spec-label {
-    font-size: 11px;
+    font-size: 10px;
     color: #999;
     letter-spacing: 2px;
     text-transform: uppercase;
   }
 
-  .other-models {
-    background: #1a1a1a;
+  /* ===== OTHER MODELS (BMW grid) ===== */
+  .models-grid-section {
     padding: 90px 60px;
-    color: #fff;
+    background: #fafafa;
+    border-top: 1px solid #ebebeb;
   }
-  .other-models h2 {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 300;
-    letter-spacing: 3px;
-    margin-bottom: 60px;
+  .section-head {
+    max-width: 1300px;
+    margin: 0 auto 50px;
   }
-  .other-models h2 strong { font-weight: 700; color: #4da6ff; }
+  .section-head h2 {
+    font-size: 38px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+  }
+  .section-head h2 strong { font-weight: 500; }
+
   .models-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 0 auto;
   }
   .model-card {
-    background: #222;
-    width: 300px;
-    border: 1px solid #333;
-    transition: all 0.4s;
+    background: #fff;
     text-decoration: none;
-    color: #fff;
+    color: #1a1a1a;
+    transition: all 0.3s;
+    display: block;
   }
-  .model-card:hover {
-    transform: translateY(-8px);
-    border-color: #4da6ff;
-    box-shadow: 0 20px 50px rgba(77,166,255,0.2);
+  .model-card:hover .model-card-img img {
+    transform: scale(1.04);
   }
   .model-card-img {
-    height: 180px;
-    background: linear-gradient(135deg, #001a33, #003366);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
+    height: 220px;
+    overflow: hidden;
+    background: #f0f0f0;
+    margin-bottom: 25px;
   }
-  .model-card-info { padding: 25px; }
-  .model-card-info h3 {
+  .model-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .model-card-body { padding: 0 5px; }
+  .model-card-body h3 {
     font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
   }
-  .model-card-info .price {
-    font-size: 13px;
-    color: #4da6ff;
-    letter-spacing: 1px;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #333;
-  }
-  .model-card-info p {
-    font-size: 13px;
-    color: #999;
-    line-height: 1.8;
-    margin-top: 10px;
-  }
-
-  .cta {
-    text-align: center;
-    padding: 90px 30px;
-    background: #fff;
-  }
-  .cta h2 {
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: 2px;
+  .model-card-body .type {
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     margin-bottom: 20px;
   }
-  .cta h2 strong { font-weight: 700; color: #0066b1; }
-  .cta p { color: #777; margin-bottom: 40px; font-size: 16px; }
-  .cta-btn {
-    display: inline-block;
-    padding: 18px 55px;
-    background: #1a1a1a;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 13px;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    border: 2px solid #1a1a1a;
+  .model-card-body .price {
+    font-size: 14px;
+    color: #1a1a1a;
+    padding-top: 18px;
+    border-top: 1px solid #ebebeb;
   }
-  .cta-btn:hover { background: #fff; color: #1a1a1a; }
 
+  /* ===== FOOTER ===== */
   footer {
     background: #1a1a1a;
-    color: #888;
+    color: #999;
     text-align: center;
-    padding: 35px;
+    padding: 40px 20px;
     font-size: 12px;
     letter-spacing: 1px;
   }
 
   @media (max-width: 700px) {
-    header { flex-direction: column; gap: 15px; padding: 15px; }
-    nav a { margin: 0 10px; font-size: 11px; }
-    .intro { padding: 50px 25px 30px; }
-    .intro h1 { font-size: 32px; }
-    .tabs { padding: 0 25px; gap: 20px; overflow-x: auto; }
-    .tab { font-size: 13px; white-space: nowrap; }
-    .spinner-container .Sirv { height: 320px; }
-    .model-info { padding: 50px 25px; }
-    .model-name { font-size: 28px; }
-    .specs-row { gap: 30px; }
-    .spec-value { font-size: 24px; }
-    .other-models { padding: 60px 25px; }
-    .other-models h2 { font-size: 26px; }
+    header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 11px; }
+    .page-intro { padding: 50px 25px 20px; }
+    .page-intro h1 { font-size: 34px; }
+    .main-model { padding: 30px 20px 50px; }
+    .spinner-wrap { padding: 10px; }
+    .spinner-wrap .Sirv { height: 300px; }
+    .info-bar { flex-direction: column; align-items: flex-start; }
+    .info-right { text-align: left; }
+    .specs { gap: 35px; }
+    .spec-value { font-size: 22px; }
+    .models-grid-section { padding: 60px 20px; }
+    .section-head h2 { font-size: 26px; }
+    .models-grid { grid-template-columns: 1fr; gap: 40px; }
   }
 </style>
 </head>
@@ -282,7 +259,7 @@
   <header>
     <div class="logo">
       <div class="logo-circle">EN</div>
-      <span>Ehsan Najafi</span>
+      <span>EHSAN NAJAFI</span>
     </div>
     <nav>
       <a href="index.html">Home</a>
@@ -292,85 +269,90 @@
     </nav>
   </header>
 
-  <section class="intro">
+  <section class="page-intro">
     <h1>The <strong>BMW M5</strong></h1>
-    <p>Experience the ultimate high-performance sedan. Drag to explore every angle of the BMW M5 in stunning 360 degrees.</p>
   </section>
 
-  <div class="tabs">
-    <div class="tab active">Alle</div>
-    <div class="tab">Vollelektrisch</div>
-    <div class="tab">Plug-in-Hybrid</div>
-    <div class="tab">M Modelle</div>
-  </div>
+  <section class="main-model">
+    <div class="main-model-title">Explore every angle in 360°</div>
 
-  <section class="spinner-section">
-    <div class="spinner-container">
+    <div class="spinner-wrap">
       <div class="Sirv" data-src="https://aligholipour360.sirv.com/Spins/Bmw360/Bmw/Bmw360/BMV%20M5.spin"></div>
+      <div class="rotate-hint">Drag to rotate</div>
     </div>
-    <div class="spinner-hint">Drag to rotate</div>
-  </section>
 
-  <section class="model-info">
-    <h2 class="model-name">BMW <strong>M5</strong></h2>
-    <span class="model-tag">Plug-in Hybrid</span>
-    <p class="model-desc">
-      The BMW M5 is the ultimate expression of performance and luxury. Powered by a 4.4-liter V8 engine combined with an electric motor, producing 717 horsepower, it accelerates from 0 to 100 km/h in just 3.5 seconds. With advanced M xDrive technology and a refined interior, the M5 delivers an unmatched driving experience.
-    </p>
-    <div class="specs-row">
+    <div class="info-bar">
+      <div class="info-left">
+        <h2>BMW <strong>M5</strong></h2>
+        <div class="subtitle">Plug-in Hybrid · Automatic</div>
+      </div>
+      <div class="info-right">
+        <div class="price-label">Starting from</div>
+        <div class="price">€145,200</div>
+      </div>
+    </div>
+
+    <div class="specs">
       <div class="spec-item">
         <div class="spec-value"><strong>717</strong></div>
         <div class="spec-label">Horsepower</div>
       </div>
       <div class="spec-item">
-        <div class="spec-value"><strong>3.5</strong>s</div>
-        <div class="spec-label">0-100 km/h</div>
+        <div class="spec-value"><strong>3.5</strong> s</div>
+        <div class="spec-label">0–100 km/h</div>
       </div>
       <div class="spec-item">
         <div class="spec-value"><strong>305</strong></div>
         <div class="spec-label">Top Speed (km/h)</div>
       </div>
       <div class="spec-item">
-        <div class="spec-value"><strong>4.4</strong>L</div>
+        <div class="spec-value"><strong>4.4</strong> L</div>
         <div class="spec-label">V8 Engine</div>
       </div>
     </div>
   </section>
 
-  <section class="other-models">
-    <h2>Explore Other <strong>Models</strong></h2>
-    <div class="models-grid">
-      <a href="#" class="model-card">
-        <div class="model-card-img">🚗</div>
-        <div class="model-card-info">
-          <h3>5 Series</h3>
-          <p>A luxury sedan combining elegance with advanced technology.</p>
-          <div class="price">From $85,000</div>
-        </div>
-      </a>
-      <a href="#" class="model-card">
-        <div class="model-card-img">🚙</div>
-        <div class="model-card-info">
-          <h3>X5</h3>
-          <p>A luxury SUV with spacious interior and off-road capability.</p>
-          <div class="price">From $95,000</div>
-        </div>
-      </a>
-      <a href="#" class="model-card">
-        <div class="model-card-img">⚡</div>
-        <div class="model-card-info">
-          <h3>i8</h3>
-          <p>A futuristic hybrid sports car with stunning design.</p>
-          <div class="price">From $145,000</div>
-        </div>
-      </a>
+  <section class="models-grid-section">
+    <div class="section-head">
+      <h2>Explore <strong>Other Models</strong></h2>
     </div>
-  </section>
 
-  <section class="cta">
-    <h2>Ready to <strong>Experience</strong> BMW?</h2>
-    <p>Get in touch with us for more information about our showroom.</p>
-    <a href="index.html#contact" class="cta-btn">Contact Us</a>
+    <div class="models-grid">
+
+      <a href="#" class="model-card">
+        <div class="model-card-img">
+          <img src="bmw-5series.jpg" alt="BMW 5 Series">
+        </div>
+        <div class="model-card-body">
+          <h3>BMW 5 Series</h3>
+          <div class="type">Luxury Sedan</div>
+          <div class="price">Starting from €65,000</div>
+        </div>
+      </a>
+
+      <a href="#" class="model-card">
+        <div class="model-card-img">
+          <img src="bmw-x5.jpg" alt="BMW X5">
+        </div>
+        <div class="model-card-body">
+          <h3>BMW X5</h3>
+          <div class="type">Sports Activity Vehicle</div>
+          <div class="price">Starting from €75,000</div>
+        </div>
+      </a>
+
+      <a href="#" class="model-card">
+        <div class="model-card-img">
+          <img src="bmw-i8.jpg" alt="BMW i8">
+        </div>
+        <div class="model-card-body">
+          <h3>BMW i8</h3>
+          <div class="type">Hybrid Sports Car</div>
+          <div class="price">Starting from €145,000</div>
+        </div>
+      </a>
+
+    </div>
   </section>
 
   <footer>
