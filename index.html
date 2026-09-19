@@ -10,17 +10,19 @@
   body {
     font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
     background: #0a0a0a;
-    color: #1a1a1a;
+    color: #fff;
     font-weight: 300;
     overflow-x: hidden;
   }
 
-  /* ===== SPLASH SCREEN ===== */
+  /* ===================================
+     SPLASH SCREEN
+     =================================== */
   .splash {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100vh;
-    background: #0a0a0a;
+    background: radial-gradient(ellipse at center, #0a1929 0%, #000 70%);
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -29,111 +31,137 @@
     overflow: hidden;
     transition: opacity 0.8s ease, visibility 0.8s;
   }
-  .splash.hide {
-    opacity: 0;
-    visibility: hidden;
-  }
+  .splash.hide { opacity: 0; visibility: hidden; }
 
-  /* Logo */
   .splash-logo {
-    width: 90px; height: 90px; border-radius: 50%;
+    width: 80px; height: 80px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
-    border: 4px solid #333;
+    border: 4px solid #4da6ff;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: bold; color: #000;
-    margin-bottom: 40px;
+    font-size: 16px; font-weight: bold; color: #000;
+    margin-bottom: 50px;
     opacity: 0;
     transform: scale(0.3);
-    animation: logoIn 1s 0.3s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 60px rgba(0,102,177,0.5);
+    animation: logoIn 1s 0.2s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 60px rgba(77,166,255,0.8), 0 0 120px rgba(0,102,177,0.5);
+    position: relative; z-index: 5;
   }
   @keyframes logoIn {
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* Neon line */
-  .neon-line {
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #0066b1, #4da6ff, #0066b1, transparent);
-    box-shadow: 0 0 20px #4da6ff, 0 0 40px #0066b1;
-    animation: lineGrow 1.2s 1s forwards;
-    margin-bottom: 30px;
-  }
-  @keyframes lineGrow {
-    to { width: 280px; }
-  }
-
-  /* Name text */
-  .splash-name {
-    font-size: 32px;
-    font-weight: 200;
-    letter-spacing: 10px;
-    color: #fff;
+  .speed-trail {
+    position: absolute;
+    top: 50%; right: 0;
+    height: 4px; width: 0;
+    background: linear-gradient(90deg, transparent, #4da6ff, #fff);
+    box-shadow: 0 0 30px #4da6ff, 0 0 60px #0066b1;
+    transform: translateY(-50%);
     opacity: 0;
-    animation: fadeIn 1s 1.8s forwards;
-    text-transform: uppercase;
+    animation: trailGrow 1.2s 1.2s forwards;
+    z-index: 2;
   }
-  .splash-name strong { font-weight: 600; color: #4da6ff; }
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-
-  /* Loading dots */
-  .splash-dots {
-    display: flex;
-    gap: 8px;
-    margin-top: 50px;
-    opacity: 0;
-    animation: fadeIn 0.5s 2.2s forwards;
-  }
-  .splash-dots span {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #4da6ff;
-    animation: dotPulse 1.4s infinite ease-in-out;
-  }
-  .splash-dots span:nth-child(2) { animation-delay: 0.2s; }
-  .splash-dots span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes dotPulse {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
+  @keyframes trailGrow {
+    0% { width: 0; opacity: 0; }
+    30% { width: 60%; opacity: 1; }
+    100% { width: 100%; opacity: 0; }
   }
 
-  /* Car animation */
   .splash-car {
     position: absolute;
-    bottom: 15%;
-    right: -100%;
-    width: 300px;
-    height: auto;
+    top: 50%; right: -120%;
+    transform: translateY(-50%);
+    width: 400px; max-width: 85%;
     opacity: 0;
-    animation: carDrive 2s 0.5s forwards;
-    filter: drop-shadow(0 0 30px rgba(77,166,255,0.6));
+    animation: carDrive 1.8s 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: drop-shadow(0 0 40px rgba(77,166,255,0.6)) drop-shadow(0 0 80px rgba(0,102,177,0.4));
+    z-index: 3;
   }
   @keyframes carDrive {
-    0% { right: -100%; opacity: 0; }
-    30% { opacity: 1; }
-    100% { right: 5%; opacity: 1; }
+    0% { right: -120%; opacity: 0; transform: translateY(-50%) scale(1.1); }
+    20% { opacity: 1; }
+    70% { right: 5%; opacity: 1; transform: translateY(-50%) scale(1); }
+    75% { right: 7%; transform: translateY(-50%) scale(1.02); }
+    80% { right: 5%; transform: translateY(-50%) scale(0.99); }
+    100% { right: 5%; opacity: 1; transform: translateY(-50%) scale(1); }
   }
 
-  /* ===== MAIN CONTENT ===== */
+  .dust {
+    position: absolute;
+    top: 50%; left: 0;
+    width: 100%; height: 200px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    animation: dustFade 2s 2.5s forwards;
+  }
+  .dust span {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(77, 166, 255, 0.4);
+    filter: blur(2px);
+  }
+  .dust span:nth-child(1) { left: 20%; top: 60%; animation: dustFloat 2s infinite; }
+  .dust span:nth-child(2) { left: 25%; top: 40%; animation: dustFloat 2.5s infinite 0.3s; }
+  .dust span:nth-child(3) { left: 30%; top: 70%; animation: dustFloat 1.8s infinite 0.6s; }
+  .dust span:nth-child(4) { left: 15%; top: 55%; animation: dustFloat 2.2s infinite 0.9s; }
+  .dust span:nth-child(5) { left: 22%; top: 30%; animation: dustFloat 2.4s infinite 1.2s; }
+  @keyframes dustFloat {
+    0% { transform: translate(0, 0) scale(0.5); opacity: 0.5; }
+    100% { transform: translate(-40px, -30px) scale(1.5); opacity: 0; }
+  }
+  @keyframes dustFade { to { opacity: 1; } }
+
+  .splash-name {
+    position: absolute;
+    bottom: 15%; left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px; font-weight: 200;
+    letter-spacing: 12px; color: #fff;
+    opacity: 0;
+    animation: nameIn 1s 3s forwards;
+    text-transform: uppercase;
+    text-align: center; white-space: nowrap;
+    z-index: 5;
+    text-shadow: 0 0 30px rgba(77,166,255,0.8);
+  }
+  .splash-name strong { font-weight: 600; color: #4da6ff; }
+  @keyframes nameIn {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  .splash-sub {
+    position: absolute;
+    bottom: 11%; left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px; letter-spacing: 6px;
+    color: #4da6ff; opacity: 0;
+    animation: nameIn 1s 3.5s forwards;
+    text-transform: uppercase;
+    z-index: 5;
+  }
+
+  /* ===================================
+     MAIN CONTENT
+     =================================== */
   .main-content {
     opacity: 0;
     transition: opacity 0.8s 0.3s;
+    background: #0a0a0a;
   }
-  .main-content.show {
-    opacity: 1;
-  }
+  .main-content.show { opacity: 1; }
 
-  /* ===== TOP BAR ===== */
+  /* TOP BAR */
   .top-bar {
-    background: #fff;
+    background: #000;
     padding: 14px 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #1a1a1a;
     position: sticky;
     top: 0;
     z-index: 50;
@@ -141,46 +169,125 @@
   .bmw-logo {
     width: 42px; height: 42px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
-    border: 3px solid #1a1a1a;
+    border: 3px solid #4da6ff;
     display: flex; align-items: center; justify-content: center;
     font-size: 9px; font-weight: bold; color: #000;
     flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(77,166,255,0.5);
   }
   .center-text {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: #666;
-    font-weight: 400;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: #888; font-weight: 400;
+  }
+  .top-right {
+    display: flex; align-items: center; gap: 12px;
   }
   .account-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
     background: none;
-    border: 1.5px solid #1a1a1a;
+    border: 1.5px solid #4da6ff;
     padding: 8px 16px;
     cursor: pointer;
     font-family: inherit;
     font-size: 12px;
     letter-spacing: 1px;
-    color: #1a1a1a;
+    color: #4da6ff;
     font-weight: 500;
     transition: all 0.3s;
     text-transform: uppercase;
     text-decoration: none;
   }
   .account-btn:hover {
-    background: #1a1a1a;
-    color: #fff;
+    background: #4da6ff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(77,166,255,0.6);
   }
 
-  /* ===== HERO ===== */
+  /* Hamburger */
+  .menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 60;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 26px; height: 2px;
+    background: #4da6ff;
+    transition: all 0.3s;
+    box-shadow: 0 0 8px rgba(77,166,255,0.8);
+  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Slide Menu */
+  .slide-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 100%; max-width: 420px;
+    height: 100vh;
+    background: #0a0a0a;
+    z-index: 55;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    padding: 90px 45px 40px;
+    box-shadow: -10px 0 40px rgba(0,102,177,0.2);
+    border-left: 1px solid #1a1a1a;
+  }
+  .slide-menu.open { right: 0; }
+  .menu-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    z-index: 54;
+  }
+  .menu-overlay.open { opacity: 1; visibility: visible; }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #1a1a1a;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: all 0.3s;
+  }
+  .menu-item:hover { color: #4da6ff; padding-left: 8px; }
+  .menu-item .arrow {
+    color: #4da6ff;
+    font-size: 20px;
+    font-weight: 300;
+    transition: transform 0.3s;
+  }
+  .menu-item:hover .arrow { transform: translateX(4px); }
+  .divider { height: 1px; background: #1a1a1a; margin: 32px 0; }
+
+  .m-stripes { display: inline-flex; margin-left: 10px; vertical-align: middle; }
+  .m-stripes span { display: inline-block; width: 4px; height: 15px; }
+  .m-stripes .lightblue { background: #66b8e0; }
+  .m-stripes .darkblue { background: #003d7a; }
+  .m-stripes .red { background: #e7222e; }
+
+  .alpina-mark { color: #4da6ff; margin-left: 8px; font-size: 14px; }
+
+  /* HERO */
   .hero {
     position: relative;
     min-height: 90vh;
-    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+    background: radial-gradient(ellipse at center, #0a1929 0%, #000 70%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,62 +301,54 @@
     z-index: 3;
   }
   .hero-title h2 {
-    font-size: 13px;
-    letter-spacing: 5px;
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    font-weight: 400;
+    font-size: 13px; letter-spacing: 5px;
+    color: #4da6ff; text-transform: uppercase;
+    margin-bottom: 15px; font-weight: 400;
   }
   .hero-title h1 {
-    font-size: 54px;
-    font-weight: 200;
-    letter-spacing: 4px;
-    color: #1a1a1a;
-    margin-bottom: 30px;
-    line-height: 1.1;
+    font-size: 54px; font-weight: 200;
+    letter-spacing: 4px; color: #fff;
+    margin-bottom: 30px; line-height: 1.1;
+    text-shadow: 0 0 40px rgba(77,166,255,0.5);
   }
-  .hero-title h1 strong { font-weight: 500; }
+  .hero-title h1 strong { font-weight: 500; color: #4da6ff; }
   .hero-btn {
     display: inline-block;
     padding: 16px 45px;
     background: #0066b1;
     color: #fff;
     text-decoration: none;
-    border: 1.5px solid #0066b1;
+    border: 1.5px solid #4da6ff;
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 500;
     transition: all 0.3s;
+    box-shadow: 0 0 25px rgba(77,166,255,0.4);
   }
   .hero-btn:hover {
-    background: #004a80;
-    border-color: #004a80;
+    background: #4da6ff;
+    color: #000;
+    box-shadow: 0 0 40px rgba(77,166,255,0.8);
   }
 
   .car-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 850px;
+    width: 100%; max-width: 850px;
     z-index: 2;
   }
   .car-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.2));
+    width: 100%; height: auto; display: block;
+    filter: drop-shadow(0 30px 60px rgba(77,166,255,0.3));
   }
   .headlight-glow {
-    position: absolute;
-    top: 47%; right: 4.5%;
+    position: absolute; top: 47%; right: 4.5%;
     width: 55px; height: 20px;
     background: radial-gradient(ellipse, #fff 0%, #cce6ff 30%, rgba(77,166,255,0.8) 60%, transparent 100%);
     border-radius: 50%;
-    opacity: 0;
-    filter: blur(6px);
+    opacity: 0; filter: blur(6px);
     animation: headlightOn 1.5s 0.5s forwards;
-    box-shadow: 0 0 40px 15px rgba(255,255,255,0.9), 0 0 80px 30px rgba(77,166,255,0.6);
+    box-shadow: 0 0 40px 15px rgba(255,255,255,0.9), 0 0 80px 30px rgba(77,166,255,0.8);
   }
   @keyframes headlightOn {
     0% { opacity: 0; transform: scale(0.3); }
@@ -257,13 +356,11 @@
     100% { opacity: 1; transform: scale(1); }
   }
   .taillight-glow {
-    position: absolute;
-    top: 39%; left: 3%;
+    position: absolute; top: 39%; left: 3%;
     width: 40px; height: 15px;
     background: radial-gradient(ellipse, #ff3333 0%, #ff0000 40%, rgba(200,0,0,0.8) 70%, transparent 100%);
     border-radius: 40%;
-    opacity: 0;
-    filter: blur(5px);
+    opacity: 0; filter: blur(5px);
     animation: taillightOn 1.5s 1s forwards;
     box-shadow: 0 0 30px 12px rgba(255,51,51,0.9), 0 0 60px 25px rgba(255,0,0,0.5);
   }
@@ -273,66 +370,70 @@
     100% { opacity: 0.9; transform: scale(1); }
   }
 
-  /* ===== SPECS ===== */
+  /* SPECS */
   .specs-section {
     padding: 100px 60px;
-    background: #fafafa;
-    border-top: 1px solid #ebebeb;
+    background: #0a0a0a;
+    border-top: 1px solid #1a1a1a;
   }
-  .section-head {
-    max-width: 1300px; margin: 0 auto 60px;
-  }
+  .section-head { max-width: 1300px; margin: 0 auto 60px; }
   .section-head h2 {
     font-size: 42px; font-weight: 200; letter-spacing: 1px;
-    color: #1a1a1a; margin-bottom: 12px;
+    color: #fff; margin-bottom: 12px;
   }
-  .section-head h2 strong { font-weight: 500; }
+  .section-head h2 strong { font-weight: 500; color: #4da6ff; }
   .section-head .sub {
     font-size: 12px; letter-spacing: 4px;
-    color: #999; text-transform: uppercase;
+    color: #4da6ff; text-transform: uppercase;
   }
   .specs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: #ebebeb;
-    border: 1px solid #ebebeb;
+    gap: 1px; background: #1a1a1a;
+    border: 1px solid #1a1a1a;
     max-width: 1300px; margin: 0 auto;
   }
   .spec-box {
-    background: #fff;
+    background: #000;
     padding: 45px 35px;
+    transition: all 0.4s;
+  }
+  .spec-box:hover {
+    background: #0a1929;
+    box-shadow: inset 0 0 40px rgba(77,166,255,0.15);
   }
   .spec-box .value {
     font-size: 42px; font-weight: 200;
-    color: #1a1a1a; margin-bottom: 10px; letter-spacing: 1px;
+    color: #fff; margin-bottom: 10px; letter-spacing: 1px;
   }
-  .spec-box .value strong { font-weight: 500; color: #0066b1; }
+  .spec-box .value strong { font-weight: 500; color: #4da6ff; }
   .spec-box .label {
-    font-size: 11px; color: #999;
+    font-size: 11px; color: #888;
     letter-spacing: 2px; text-transform: uppercase;
   }
 
-  /* ===== CTA ===== */
+  /* CTA */
   .cta-section {
     padding: 120px 60px;
     text-align: center;
-    background: #fff;
+    background: #000;
+    border-top: 1px solid #1a1a1a;
   }
   .cta-section h2 {
     font-size: 48px; font-weight: 200; letter-spacing: 1px;
-    margin-bottom: 20px; color: #1a1a1a;
+    margin-bottom: 20px; color: #fff;
   }
-  .cta-section h2 strong { font-weight: 500; }
+  .cta-section h2 strong { font-weight: 500; color: #4da6ff; }
   .cta-section p {
-    font-size: 16px; color: #777; margin-bottom: 45px;
+    font-size: 16px; color: #888; margin-bottom: 45px;
   }
 
-  /* ===== FOOTER ===== */
+  /* FOOTER */
   footer {
-    background: #1a1a1a;
-    color: #999;
+    background: #000;
+    color: #888;
     padding: 80px 60px 35px;
+    border-top: 1px solid #1a1a1a;
   }
   .footer-wrap { max-width: 1300px; margin: 0 auto; }
   .footer-top {
@@ -340,7 +441,7 @@
     grid-template-columns: 2fr 1fr 1fr;
     gap: 60px;
     padding-bottom: 60px;
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid #1a1a1a;
   }
   .footer-brand .logo {
     display: flex; align-items: center; gap: 12px;
@@ -350,7 +451,7 @@
   .footer-brand .logo-circle {
     width: 38px; height: 38px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
-    border: 3px solid #444;
+    border: 3px solid #4da6ff;
     display: flex; align-items: center; justify-content: center;
     font-size: 9px; font-weight: bold; color: #000;
   }
@@ -372,10 +473,10 @@
     display: flex; justify-content: space-between; align-items: center;
     padding-top: 30px; flex-wrap: wrap; gap: 20px;
   }
-  .copyright { font-size: 12px; letter-spacing: 1px; color: #777; }
+  .copyright { font-size: 12px; letter-spacing: 1px; color: #666; }
   .legal { display: flex; gap: 25px; }
   .legal a {
-    font-size: 12px; color: #777; text-decoration: none;
+    font-size: 12px; color: #666; text-decoration: none;
     letter-spacing: 1px; transition: color 0.3s;
   }
   .legal a:hover { color: #4da6ff; }
@@ -384,7 +485,7 @@
     .top-bar { padding: 12px 18px; }
     .center-text { font-size: 11px; }
     .bmw-logo { width: 36px; height: 36px; font-size: 8px; }
-    .account-btn { padding: 6px 12px; font-size: 10px; }
+    .account-btn { padding: 6px 10px; font-size: 10px; }
     .hero-title h1 { font-size: 32px; letter-spacing: 2px; }
     .specs-section { padding: 60px 25px; }
     .section-head h2 { font-size: 30px; }
@@ -394,13 +495,11 @@
     .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .legal { justify-content: center; flex-wrap: wrap; }
-    .splash-name { font-size: 20px; letter-spacing: 6px; }
-    .splash-logo { width: 70px; height: 70px; font-size: 14px; }
-    .splash-car { width: 200px; }
-    .neon-line { animation: lineGrow 1.2s 1s forwards; }
-    @keyframes lineGrow {
-      to { width: 200px; }
-    }
+    .splash-name { font-size: 18px; letter-spacing: 6px; }
+    .splash-logo { width: 60px; height: 60px; font-size: 12px; }
+    .splash-car { width: 280px; }
+    .slide-menu { padding: 85px 28px 30px; }
+    .menu-item { font-size: 17px; padding: 20px 0; }
   }
 </style>
 </head>
@@ -408,15 +507,14 @@
 
   <!-- ===== SPLASH SCREEN ===== -->
   <div class="splash" id="splash">
-    <img src="bmw.jpg" alt="" class="splash-car">
     <div class="splash-logo">BMW</div>
-    <div class="neon-line"></div>
-    <div class="splash-name">EHSAN <strong>NAJAFI</strong></div>
-    <div class="splash-dots">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="speed-trail"></div>
+    <div class="dust">
+      <span></span><span></span><span></span><span></span><span></span>
     </div>
+    <img src="bmw.jpg" alt="BMW M5" class="splash-car">
+    <div class="splash-name">EHSAN <strong>NAJAFI</strong></div>
+    <div class="splash-sub">Sheer Driving Pleasure</div>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
@@ -429,9 +527,42 @@
         <span>📍</span>
         <span>Choose your local BMW Center</span>
       </div>
-      <a href="account.html" class="account-btn">
-        👤 Account
+      <div class="top-right">
+        <a href="account.html" class="account-btn">👤 Account</a>
+        <button class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SLIDE MENU -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="slide-menu" id="slideMenu">
+      <a href="#" class="menu-item"><span>All Models</span><span class="arrow">›</span></a>
+      <a href="#" class="menu-item"><span>SUVs</span><span class="arrow">›</span></a>
+      <a href="#" class="menu-item"><span>Sedans</span><span class="arrow">›</span></a>
+      <a href="#" class="menu-item"><span>Coupes</span><span class="arrow">›</span></a>
+      <a href="#" class="menu-item"><span>Convertibles</span><span class="arrow">›</span></a>
+      <a href="#" class="menu-item"><span>Touring</span><span class="arrow">›</span></a>
+      <div class="divider"></div>
+      <a href="#" class="menu-item"><span>Electrified ⚡</span><span class="arrow">›</span></a>
+      <a href="#" class="menu-item">
+        <span>BMW M
+          <span class="m-stripes">
+            <span class="lightblue"></span>
+            <span class="darkblue"></span>
+            <span class="red"></span>
+          </span>
+        </span>
+        <span class="arrow">›</span>
       </a>
+      <a href="#" class="menu-item"><span>BMW ALPINA <span class="alpina-mark">›</span></span></a>
+      <div class="divider"></div>
+      <a href="index.html" class="menu-item"><span>Home</span><span class="arrow">›</span></a>
+      <a href="models.html" class="menu-item"><span>Models 360°</span><span class="arrow">›</span></a>
+      <a href="account.html" class="menu-item"><span>Account</span><span class="arrow">›</span></a>
     </div>
 
     <!-- HERO -->
@@ -526,12 +657,29 @@
   </div>
 
   <script>
-    // Hide splash after 3 seconds
+    // Splash screen timer
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hide');
         document.getElementById('mainContent').classList.add('show');
-      }, 3000);
+      }, 5000);
+    });
+
+    // Hamburger menu
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      slideMenu.classList.toggle('open');
+      menuOverlay.classList.toggle('open');
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      slideMenu.classList.remove('open');
+      menuOverlay.classList.remove('open');
     });
   </script>
 
