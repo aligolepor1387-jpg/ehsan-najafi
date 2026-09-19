@@ -238,7 +238,7 @@
     transform: translateX(5px);
   }
 
-  /* ===== CTA SECTION ===== */
+  /* ===== CTA ===== */
   .cta-section {
     padding: 120px 60px;
     text-align: center;
@@ -279,12 +279,82 @@
   /* ===== FOOTER ===== */
   footer {
     background: #1a1a1a;
-    color: #666;
-    text-align: center;
-    padding: 45px 20px;
-    font-size: 12px;
-    letter-spacing: 2px;
+    color: #999;
+    padding: 80px 60px 35px;
   }
+  .footer-wrap {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .footer-brand .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 16px; font-weight: 400; letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .footer-brand .logo-circle {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
+    border: 3px solid #444;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: bold; color: #000;
+  }
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #777;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 22px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 14px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: #4da6ff; }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .copyright {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #777;
+  }
+  .legal {
+    display: flex;
+    gap: 25px;
+  }
+  .legal a {
+    font-size: 12px;
+    color: #777;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  .legal a:hover { color: #4da6ff; }
 
   @media (max-width: 700px) {
     header { padding: 15px 20px; flex-direction: column; gap: 15px; }
@@ -296,6 +366,17 @@
     .cta-section { padding: 80px 25px; }
     .cta-section h2 { font-size: 30px; }
     .models-grid { gap: 30px; }
+    footer { padding: 60px 25px 30px; }
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+    .legal { justify-content: center; flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -400,7 +481,49 @@
   </section>
 
   <footer>
-    © 2026 EHSAN NAJAFI
+    <div class="footer-wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-circle">EN</div>
+            <span>EHSAN NAJAFI</span>
+          </div>
+          <p>Passionate about cars, technology, and design. A personal tribute to the BMW world.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html">Home</a>
+          <a href="models.html">Models</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Models</h4>
+          <a href="models.html">BMW M5</a>
+          <a href="models.html">BMW 5 Series</a>
+          <a href="models.html">BMW X5</a>
+          <a href="models.html">BMW i8</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:alialigolipour13871387@gmail.com">Email</a>
+          <a href="https://instagram.com/" target="_blank">Instagram</a>
+          <a href="https://t.me/" target="_blank">Telegram</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">
+          © 2026 Ehsan Najafi. All rights reserved.
+        </div>
+        <div class="legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Legal Notice</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
 </body>
