@@ -14,352 +14,310 @@
     font-weight: 300;
   }
 
-  /* ===== HEADER (BMW minimal) ===== */
-  header {
-    position: sticky; top: 0; z-index: 100;
-    padding: 22px 60px;
-    display: flex; justify-content: space-between; align-items: center;
+  /* ===== TOP BAR ===== */
+  .top-bar {
     background: #fff;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid #ebebeb;
   }
-  .logo {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 18px; font-weight: 400; letter-spacing: 4px;
-  }
-  .logo-circle {
-    width: 42px; height: 42px; border-radius: 50%;
+  .bmw-logo {
+    width: 45px; height: 45px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
     border: 3px solid #1a1a1a;
     display: flex; align-items: center; justify-content: center;
     font-size: 10px; font-weight: bold; color: #000;
   }
-  nav { display: flex; gap: 40px; }
-  nav a {
-    color: #1a1a1a; text-decoration: none;
-    font-size: 13px; font-weight: 400; letter-spacing: 1.5px;
-    transition: color 0.3s; text-transform: uppercase;
-    padding-bottom: 4px;
-    border-bottom: 1px solid transparent;
-  }
-  nav a:hover, nav a.active {
-    color: #0066b1;
-    border-bottom-color: #0066b1;
-  }
-
-  /* ===== HERO TITLE ===== */
-  .page-intro {
-    padding: 90px 60px 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .page-intro h1 {
-    font-size: 56px;
-    font-weight: 200;
-    letter-spacing: 1px;
-    line-height: 1.1;
-    color: #1a1a1a;
-  }
-  .page-intro h1 strong { font-weight: 500; }
-
-  /* ===== MAIN MODEL (M5) ===== */
-  .main-model {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 40px 60px 80px;
-  }
-  .main-model-title {
-    font-size: 26px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    margin-bottom: 25px;
-    color: #1a1a1a;
-  }
-
-  .spinner-wrap {
-    background: #f5f5f5;
-    padding: 20px;
-    margin-bottom: 40px;
-    position: relative;
-  }
-  .spinner-wrap .Sirv {
-    width: 100%;
-    height: 520px;
-  }
-  .rotate-hint {
-    text-align: center;
-    font-size: 11px;
-    color: #999;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding-top: 20px;
-  }
-  .rotate-hint::before { content: '←  '; }
-  .rotate-hint::after { content: '  →'; }
-
-  /* ===== M5 INFO BAR ===== */
-  .info-bar {
+  .center-text {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+  }
+  .center-text .pin {
+    color: #0066b1;
+    font-size: 16px;
+  }
+  .close-btn {
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    background: #fff;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .back-arrow {
+    font-size: 24px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 300;
+    margin-right: 30px;
+  }
+  .page-header h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin-right: 30px;
+  }
+
+  /* ===== MENU LIST ===== */
+  .menu-list {
+    padding: 30px 30px 40px;
+  }
+  .menu-item {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 0;
-    border-top: 1px solid #ebebeb;
-    border-bottom: 1px solid #ebebeb;
-    gap: 30px;
-  }
-  .info-left h2 {
-    font-size: 32px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-  .info-left h2 strong { font-weight: 500; }
-  .info-left .subtitle {
-    font-size: 13px;
-    color: #666;
-    letter-spacing: 1px;
-  }
-  .info-right {
-    text-align: right;
-  }
-  .info-right .price-label {
-    font-size: 11px;
-    color: #999;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-  .info-right .price {
-    font-size: 26px;
-    font-weight: 400;
-    color: #1a1a1a;
-  }
-
-  /* ===== SPECS ===== */
-  .specs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 60px;
-    padding: 40px 0;
-  }
-  .spec-item { min-width: 120px; }
-  .spec-value {
-    font-size: 30px;
-    font-weight: 300;
-    color: #1a1a1a;
-    margin-bottom: 6px;
-  }
-  .spec-value strong { font-weight: 500; }
-  .spec-label {
-    font-size: 10px;
-    color: #999;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* ===== OTHER MODELS (BMW grid) ===== */
-  .models-grid-section {
-    padding: 90px 60px;
-    background: #fafafa;
-    border-top: 1px solid #ebebeb;
-  }
-  .section-head {
-    max-width: 1300px;
-    margin: 0 auto 50px;
-  }
-  .section-head h2 {
-    font-size: 38px;
-    font-weight: 200;
-    letter-spacing: 1px;
-    color: #1a1a1a;
-  }
-  .section-head h2 strong { font-weight: 500; }
-
-  .models-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-  .model-card {
-    background: #fff;
+    padding: 22px 0;
+    border-bottom: 1px solid #f0f0f0;
     text-decoration: none;
     color: #1a1a1a;
-    transition: all 0.3s;
-    display: block;
-  }
-  .model-card:hover .model-card-img img {
-    transform: scale(1.04);
-  }
-  .model-card-img {
-    height: 220px;
-    overflow: hidden;
-    background: #f0f0f0;
-    margin-bottom: 25px;
-  }
-  .model-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  .model-card-body { padding: 0 5px; }
-  .model-card-body h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
+    transition: color 0.3s;
   }
-  .model-card-body .type {
-    font-size: 12px;
-    color: #888;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+  .menu-item:hover { color: #0066b1; }
+  .menu-item .arrow {
+    color: #999;
+    font-size: 18px;
+    font-weight: 300;
   }
-  .model-card-body .price {
-    font-size: 14px;
+  .menu-item .m-badge {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .divider {
+    height: 1px;
+    background: #d0d0d0;
+    margin: 35px 0;
+  }
+
+  /* BMW M colors badge */
+  .m-stripes {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .m-stripes span {
+    display: inline-block;
+    width: 5px;
+    height: 14px;
+  }
+  .m-stripes .blue { background: #0066b1; }
+  .m-stripes .darkblue { background: #003d7a; }
+  .m-stripes .red { background: #e7222e; }
+  .m-stripes .lightblue { background: #66b8e0; }
+
+  .alpina-arrow {
+    color: #999;
+    margin-left: 10px;
+  }
+
+  /* ===== BOTTOM SEARCH ===== */
+  .bottom-search {
+    padding: 40px 30px 60px;
+    display: flex;
+    justify-content: center;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1.5px solid #1a1a1a;
+    padding: 14px 22px;
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+  }
+  .search-box .search-icon {
+    font-size: 18px;
     color: #1a1a1a;
-    padding-top: 18px;
-    border-top: 1px solid #ebebeb;
+  }
+  .search-box input {
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 300;
+    color: #1a1a1a;
+    flex: 1;
+    background: transparent;
+  }
+  .search-box input::placeholder {
+    color: #999;
+  }
+
+  /* ===== CTA IMAGE ===== */
+  .cta-image {
+    position: relative;
+    height: 320px;
+    background: linear-gradient(180deg, #2a2a2a 0%, #000 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+  }
+  .cta-image::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 40%;
+    background: radial-gradient(ellipse, rgba(231,34,46,0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+  .cta-image .car-silhouette {
+    font-size: 0;
+    position: relative;
+    bottom: 30px;
+    z-index: 2;
+  }
+  .cta-image .car-silhouette::before {
+    content: '🚗';
+    font-size: 90px;
+    filter: grayscale(100%) brightness(0.5) drop-shadow(0 0 30px rgba(231,34,46,0.8));
   }
 
   /* ===== FOOTER ===== */
   footer {
     background: #1a1a1a;
-    color: #999;
+    color: #666;
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     font-size: 12px;
     letter-spacing: 1px;
   }
 
   @media (max-width: 700px) {
-    header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-    nav { gap: 20px; }
-    nav a { font-size: 11px; }
-    .page-intro { padding: 50px 25px 20px; }
-    .page-intro h1 { font-size: 34px; }
-    .main-model { padding: 30px 20px 50px; }
-    .spinner-wrap { padding: 10px; }
-    .spinner-wrap .Sirv { height: 300px; }
-    .info-bar { flex-direction: column; align-items: flex-start; }
-    .info-right { text-align: left; }
-    .specs { gap: 35px; }
-    .spec-value { font-size: 22px; }
-    .models-grid-section { padding: 60px 20px; }
-    .section-head h2 { font-size: 26px; }
-    .models-grid { grid-template-columns: 1fr; gap: 40px; }
+    .top-bar { padding: 12px 18px; }
+    .center-text { font-size: 12px; }
+    .bmw-logo { width: 38px; height: 38px; font-size: 9px; }
+    .menu-list { padding: 20px 22px 30px; }
+    .menu-item { font-size: 16px; padding: 20px 0; }
+    .bottom-search { padding: 30px 22px 50px; }
+    .cta-image { height: 220px; }
   }
 </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <div class="logo-circle">EN</div>
-      <span>EHSAN NAJAFI</span>
+  <!-- TOP BAR (Choose your center) -->
+  <div class="top-bar">
+    <div class="bmw-logo">BMW</div>
+    <div class="center-text">
+      <span class="pin">📍</span>
+      Choose your local BMW Center
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="models.html" class="active">Models</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-  </header>
+    <button class="close-btn" onclick="window.location.href='index.html'">×</button>
+  </div>
 
-  <section class="page-intro">
-    <h1>The <strong>BMW M5</strong></h1>
-  </section>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a href="index.html" class="back-arrow">‹</a>
+    <h1>Models</h1>
+  </div>
 
-  <section class="main-model">
-    <div class="main-model-title">Explore every angle in 360°</div>
+  <!-- MENU LIST -->
+  <div class="menu-list">
 
-    <div class="spinner-wrap">
-      <div class="Sirv" data-src="https://aligholipour360.sirv.com/Spins/Bmw360/Bmw/Bmw360/BMV%20M5.spin"></div>
-      <div class="rotate-hint">Drag to rotate</div>
+    <a href="#" class="menu-item">
+      <span>All Models</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>SUVs</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>Sedans</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>Coupes</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>Convertibles</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>Touring</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="divider"></div>
+
+    <a href="#" class="menu-item">
+      <span>Electrified
+        <svg width="14" height="14" viewBox="0 0 14 14" style="vertical-align: middle; margin-left: 8px;">
+          <path d="M7 0 L3 7 L6 7 L5 14 L11 6 L8 6 L9 0 Z" fill="#0066b1"/>
+        </svg>
+      </span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>BMW M
+        <span class="m-stripes">
+          <span class="lightblue"></span>
+          <span class="darkblue"></span>
+          <span class="red"></span>
+        </span>
+      </span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="#" class="menu-item">
+      <span>BMW ALPINA <span class="alpina-arrow">›</span></span>
+    </a>
+
+  </div>
+
+  <!-- SEARCH -->
+  <div class="bottom-search">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search">
     </div>
+  </div>
 
-    <div class="info-bar">
-      <div class="info-left">
-        <h2>BMW <strong>M5</strong></h2>
-        <div class="subtitle">Plug-in Hybrid · Automatic</div>
-      </div>
-      <div class="info-right">
-        <div class="price-label">Starting from</div>
-        <div class="price">€145,200</div>
-      </div>
-    </div>
-
-    <div class="specs">
-      <div class="spec-item">
-        <div class="spec-value"><strong>717</strong></div>
-        <div class="spec-label">Horsepower</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-value"><strong>3.5</strong> s</div>
-        <div class="spec-label">0–100 km/h</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-value"><strong>305</strong></div>
-        <div class="spec-label">Top Speed (km/h)</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-value"><strong>4.4</strong> L</div>
-        <div class="spec-label">V8 Engine</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="models-grid-section">
-    <div class="section-head">
-      <h2>Explore <strong>Other Models</strong></h2>
-    </div>
-
-    <div class="models-grid">
-
-      <a href="#" class="model-card">
-        <div class="model-card-img">
-          <img src="bmw-5series.jpg" alt="BMW 5 Series">
-        </div>
-        <div class="model-card-body">
-          <h3>BMW 5 Series</h3>
-          <div class="type">Luxury Sedan</div>
-          <div class="price">Starting from €65,000</div>
-        </div>
-      </a>
-
-      <a href="#" class="model-card">
-        <div class="model-card-img">
-          <img src="bmw-x5.jpg" alt="BMW X5">
-        </div>
-        <div class="model-card-body">
-          <h3>BMW X5</h3>
-          <div class="type">Sports Activity Vehicle</div>
-          <div class="price">Starting from €75,000</div>
-        </div>
-      </a>
-
-      <a href="#" class="model-card">
-        <div class="model-card-img">
-          <img src="bmw-i8.jpg" alt="BMW i8">
-        </div>
-        <div class="model-card-body">
-          <h3>BMW i8</h3>
-          <div class="type">Hybrid Sports Car</div>
-          <div class="price">Starting from €145,000</div>
-        </div>
-      </a>
-
-    </div>
-  </section>
+  <!-- CTA IMAGE -->
+  <div class="cta-image">
+    <div class="car-silhouette"></div>
+  </div>
 
   <footer>
     © 2026 Ehsan Najafi | All Rights Reserved
   </footer>
-
-  <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
 
 </body>
 </html>
