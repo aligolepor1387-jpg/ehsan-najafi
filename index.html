@@ -18,9 +18,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ===================================
-     SPLASH SCREEN
-     =================================== */
+  /* SPLASH SCREEN */
   .splash {
     position: fixed;
     top: 0; left: 0;
@@ -32,8 +30,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 20px;
     will-change: opacity;
   }
@@ -48,7 +46,7 @@
     margin-bottom: 30px;
     opacity: 0;
     transform: scale(0.4);
-    animation: logoIn 0.9s 0.15s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: logoIn 0.7s 0.1s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 0 80px rgba(77,166,255,0.9), 0 0 160px rgba(0,102,177,0.6);
     position: relative; z-index: 5;
     flex-shrink: 0;
@@ -61,7 +59,7 @@
   .splash-name {
     font-size: 22px; font-weight: 200; letter-spacing: 5px;
     color: #fff; opacity: 0;
-    animation: nameIn 0.8s 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    animation: nameIn 0.6s 0.4s forwards cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center; z-index: 5;
     line-height: 1.8;
     text-shadow: 0 0 40px rgba(77,166,255,0.8);
@@ -88,7 +86,7 @@
     background: linear-gradient(90deg, transparent, #4da6ff, #fff, #4da6ff, transparent);
     box-shadow: 0 0 30px #4da6ff, 0 0 60px #0066b1;
     opacity: 0;
-    animation: trailPass 3.5s 1.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    animation: trailPass 2s 0.6s infinite cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 4;
     will-change: left, opacity;
   }
@@ -99,20 +97,16 @@
     100% { left: 100%; opacity: 0; }
   }
 
-  /* ===================================
-     MAIN CONTENT
-     =================================== */
+  /* MAIN CONTENT */
   .main-content {
     opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
     background: #0a0a0a;
     will-change: opacity;
   }
   .main-content.show { opacity: 1; }
 
-  /* ===================================
-     TOP BAR (شفاف + محو شدن با اسکرول)
-     =================================== */
+  /* TOP BAR */
   .top-bar {
     background: transparent;
     padding: 18px 30px;
@@ -148,22 +142,25 @@
   }
 
   .top-right {
-    display: flex; align-items: center; gap: 18px;
+    display: flex; align-items: center; gap: 20px;
   }
 
   .account-btn {
     display: flex; align-items: center; justify-content: center;
     background: none;
     border: none;
-    padding: 8px;
+    padding: 6px;
     cursor: pointer;
     color: #fff;
-    font-size: 28px;
-    font-weight: 300;
     transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.2s ease;
     text-decoration: none;
     will-change: transform;
+  }
+  .account-btn svg {
+    width: 28px;
+    height: 28px;
+    display: block;
   }
   .account-btn:hover {
     color: #4da6ff;
@@ -173,7 +170,6 @@
     transform: scale(1);
   }
 
-  /* Hamburger */
   .menu-toggle {
     background: none; border: none; cursor: pointer;
     padding: 8px;
@@ -196,9 +192,7 @@
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
   .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-  /* ===================================
-     SLIDE MENU
-     =================================== */
+  /* SLIDE MENU */
   .slide-menu {
     position: fixed; top: 0; right: -100%;
     width: 100%; max-width: 420px; height: 100vh;
@@ -255,9 +249,7 @@
   .m-stripes .red { background: #e7222e; }
   .alpina-mark { color: #4da6ff; margin-left: 8px; font-size: 14px; }
 
-  /* ===================================
-     HERO
-     =================================== */
+  /* HERO */
   .hero {
     position: relative; min-height: 100vh;
     background: #000;
@@ -329,9 +321,7 @@
     transform: translateY(0);
   }
 
-  /* ===================================
-     SPECS
-     =================================== */
+  /* SPECS */
   .specs-section {
     padding: 100px 60px; background: #0a0a0a;
     border-top: 1px solid #1a1a1a;
@@ -373,9 +363,7 @@
     letter-spacing: 2px; text-transform: uppercase;
   }
 
-  /* ===================================
-     CTA
-     =================================== */
+  /* CTA */
   .cta-section {
     padding: 120px 60px; text-align: center;
     background: #000; border-top: 1px solid #1a1a1a;
@@ -387,9 +375,7 @@
   .cta-section h2 strong { font-weight: 500; color: #4da6ff; }
   .cta-section p { font-size: 16px; color: #888; margin-bottom: 45px; }
 
-  /* ===================================
-     FOOTER
-     =================================== */
+  /* FOOTER */
   footer {
     background: #000; color: #888;
     padding: 80px 60px 35px;
@@ -444,9 +430,6 @@
   }
   .legal a:hover { color: #4da6ff; }
 
-  /* ===================================
-     RESPONSIVE
-     =================================== */
   @media (max-width: 700px) {
     .hero-video-bg {
       object-fit: cover;
@@ -458,7 +441,7 @@
 
     .top-bar { padding: 14px 20px; }
     .bmw-logo { width: 42px; height: 42px; font-size: 9px; }
-    .account-btn { font-size: 24px; padding: 6px; }
+    .account-btn svg { width: 24px; height: 24px; }
     .menu-toggle span { width: 26px; }
 
     .specs-section { padding: 60px 25px; }
@@ -493,13 +476,17 @@
   <!-- MAIN CONTENT -->
   <div class="main-content" id="mainContent">
 
-    <!-- HERO (هدر داخل Hero برای شفافیت) -->
+    <!-- HERO -->
     <section class="hero">
-      <!-- TOP BAR (شفاف روی ویدیو) -->
       <div class="top-bar" id="topBar">
         <div class="bmw-logo">BMW</div>
         <div class="top-right">
-          <a href="account.html" class="account-btn" title="Account">👤</a>
+          <a href="account.html" class="account-btn" title="Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a>
           <button class="menu-toggle" id="menuToggle">
             <span></span>
             <span></span>
@@ -627,12 +614,12 @@
   </div>
 
   <script>
-    // Splash: 3 seconds
+    // Splash: 1.5 seconds
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hide');
         document.getElementById('mainContent').classList.add('show');
-      }, 3000);
+      }, 1500);
     });
 
     // Hamburger menu
