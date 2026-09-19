@@ -9,197 +9,252 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-    background: #fff;
+    background: #f5f5f5;
     color: #1a1a1a;
     font-weight: 300;
+    overflow-x: hidden;
   }
 
   /* ===== TOP BAR ===== */
   .top-bar {
     background: #fff;
-    padding: 15px 30px;
+    padding: 14px 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
   .bmw-logo {
-    width: 45px; height: 45px; border-radius: 50%;
+    width: 42px; height: 42px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
     border: 3px solid #1a1a1a;
     display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: bold; color: #000;
+    font-size: 9px; font-weight: bold; color: #000;
+    flex-shrink: 0;
   }
   .center-text {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 14px;
+    gap: 8px;
+    font-size: 13px;
     color: #666;
     font-weight: 400;
   }
-  .center-text .pin {
-    color: #0066b1;
-    font-size: 16px;
-  }
-  .close-btn {
-    font-size: 24px;
-    color: #999;
-    cursor: pointer;
+  .menu-toggle {
     background: none;
     border: none;
-    font-weight: 300;
-    line-height: 1;
-  }
-
-  /* ===== PAGE HEADER ===== */
-  .page-header {
-    background: #fff;
-    padding: 20px 30px;
+    cursor: pointer;
+    padding: 8px;
     display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ebebeb;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 60;
   }
-  .back-arrow {
-    font-size: 24px;
-    color: #1a1a1a;
-    text-decoration: none;
-    font-weight: 300;
-    margin-right: 30px;
+  .menu-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: #1a1a1a;
+    transition: all 0.3s;
   }
-  .page-header h1 {
-    flex: 1;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: #1a1a1a;
-    margin-right: 30px;
-  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ===== MENU LIST ===== */
-  .menu-list {
-    padding: 30px 30px 40px;
+  /* ===== SLIDE MENU (BMW style) ===== */
+  .slide-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 100%;
+    max-width: 420px;
+    height: 100vh;
+    background: #fff;
+    z-index: 55;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    padding: 90px 45px 40px;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
   }
+  .slide-menu.open { right: 0; }
+  .menu-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    z-index: 54;
+  }
+  .menu-overlay.open { opacity: 1; visibility: visible; }
+
   .menu-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 0;
+    padding: 24px 0;
     border-bottom: 1px solid #f0f0f0;
     text-decoration: none;
     color: #1a1a1a;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
-    transition: color 0.3s;
+    letter-spacing: 0.3px;
+    transition: all 0.3s;
   }
   .menu-item:hover { color: #0066b1; }
   .menu-item .arrow {
     color: #999;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
+    transition: transform 0.3s;
   }
-  .menu-item .m-badge {
-    display: inline-block;
-    margin-left: 8px;
-    vertical-align: middle;
+  .menu-item:hover .arrow {
+    transform: translateX(4px);
+    color: #0066b1;
   }
+  .divider { height: 1px; background: #ccc; margin: 32px 0; }
 
-  .divider {
-    height: 1px;
-    background: #d0d0d0;
-    margin: 35px 0;
-  }
-
-  /* BMW M colors badge */
-  .m-stripes {
-    display: inline-flex;
-    align-items: center;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-  .m-stripes span {
-    display: inline-block;
-    width: 5px;
-    height: 14px;
-  }
-  .m-stripes .blue { background: #0066b1; }
+  .m-stripes { display: inline-flex; margin-left: 10px; vertical-align: middle; }
+  .m-stripes span { display: inline-block; width: 4px; height: 15px; }
+  .m-stripes .lightblue { background: #66b8e0; }
   .m-stripes .darkblue { background: #003d7a; }
   .m-stripes .red { background: #e7222e; }
-  .m-stripes .lightblue { background: #66b8e0; }
 
-  .alpina-arrow {
+  .alpina-mark { color: #999; margin-left: 8px; font-size: 14px; }
+
+  /* ===== HERO SPINNER ===== */
+  .hero-spinner {
+    background: linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%);
+    padding: 40px 20px 60px;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+  }
+  .hero-label {
+    max-width: 1300px;
+    margin: 0 auto 25px;
+    padding: 0 20px;
+  }
+  .hero-label h2 {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 4px;
     color: #999;
-    margin-left: 10px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
   }
+  .hero-label h1 {
+    font-size: 44px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+  }
+  .hero-label h1 strong { font-weight: 500; }
 
-  /* ===== BOTTOM SEARCH ===== */
-  .bottom-search {
-    padding: 40px 30px 60px;
-    display: flex;
-    justify-content: center;
-  }
-  .search-box {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border: 1.5px solid #1a1a1a;
-    padding: 14px 22px;
-    width: 100%;
-    max-width: 400px;
+  .spinner-box {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
     background: #fff;
+    overflow: hidden;
   }
-  .search-box .search-icon {
-    font-size: 18px;
-    color: #1a1a1a;
+  .spinner-box .Sirv {
+    width: 100%;
+    height: 520px;
   }
-  .search-box input {
-    border: none;
-    outline: none;
-    font-size: 15px;
-    font-family: inherit;
-    font-weight: 300;
-    color: #1a1a1a;
-    flex: 1;
-    background: transparent;
+  .spinner-box img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
-  .search-box input::placeholder {
+  .spinner-hint {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 4px;
     color: #999;
+    text-transform: uppercase;
+  }
+  .spinner-hint::before { content: '←  '; }
+  .spinner-hint::after { content: '  →'; }
+
+  /* ===== M5 INFO ===== */
+  .m5-info {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+  }
+  .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .info-header h2 {
+    font-size: 38px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .info-header h2 strong { font-weight: 500; }
+  .info-header .subtitle {
+    font-size: 13px;
+    color: #888;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .info-header .price-box { text-align: right; }
+  .info-header .price-label {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .info-header .price { font-size: 26px; font-weight: 400; }
+
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 40px;
+    padding: 45px 0;
+  }
+  .spec-item .val {
+    font-size: 36px;
+    font-weight: 200;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+  .spec-item .val strong { font-weight: 500; color: #0066b1; }
+  .spec-item .lbl {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
-  /* ===== CTA IMAGE ===== */
-  .cta-image {
-    position: relative;
-    height: 320px;
-    background: linear-gradient(180deg, #2a2a2a 0%, #000 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    overflow: hidden;
-    margin: 0;
+  .cta-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 18px 50px;
+    background: #0066b1;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: 1.5px solid #0066b1;
   }
-  .cta-image::before {
-    content: '';
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 40%;
-    background: radial-gradient(ellipse, rgba(231,34,46,0.6) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(40px);
-  }
-  .cta-image .car-silhouette {
-    font-size: 0;
-    position: relative;
-    bottom: 30px;
-    z-index: 2;
-  }
-  .cta-image .car-silhouette::before {
-    content: '🚗';
-    font-size: 90px;
-    filter: grayscale(100%) brightness(0.5) drop-shadow(0 0 30px rgba(231,34,46,0.8));
+  .cta-btn:hover {
+    background: #004a80;
+    border-color: #004a80;
   }
 
   /* ===== FOOTER ===== */
@@ -207,68 +262,64 @@
     background: #1a1a1a;
     color: #666;
     text-align: center;
-    padding: 30px 20px;
+    padding: 35px 20px;
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
 
   @media (max-width: 700px) {
     .top-bar { padding: 12px 18px; }
-    .center-text { font-size: 12px; }
-    .bmw-logo { width: 38px; height: 38px; font-size: 9px; }
-    .menu-list { padding: 20px 22px 30px; }
-    .menu-item { font-size: 16px; padding: 20px 0; }
-    .bottom-search { padding: 30px 22px 50px; }
-    .cta-image { height: 220px; }
+    .center-text { font-size: 11px; }
+    .bmw-logo { width: 36px; height: 36px; font-size: 8px; }
+    .hero-label h1 { font-size: 28px; }
+    .spinner-box .Sirv { height: 300px; }
+    .info-header h2 { font-size: 26px; }
+    .info-header .price { font-size: 20px; }
+    .spec-item .val { font-size: 26px; }
+    .slide-menu { padding: 85px 28px 30px; }
+    .menu-item { font-size: 17px; padding: 20px 0; }
   }
 </style>
 </head>
 <body>
 
-  <!-- TOP BAR (Choose your center) -->
+  <!-- ===== TOP BAR ===== -->
   <div class="top-bar">
     <div class="bmw-logo">BMW</div>
     <div class="center-text">
-      <span class="pin">📍</span>
-      Choose your local BMW Center
+      <span>📍</span>
+      <span>Choose your local BMW Center</span>
     </div>
-    <button class="close-btn" onclick="window.location.href='index.html'">×</button>
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <a href="index.html" class="back-arrow">‹</a>
-    <h1>Models</h1>
-  </div>
-
-  <!-- MENU LIST -->
-  <div class="menu-list">
-
+  <!-- ===== SLIDE MENU ===== -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <div class="slide-menu" id="slideMenu">
     <a href="#" class="menu-item">
       <span>All Models</span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
       <span>SUVs</span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
       <span>Sedans</span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
       <span>Coupes</span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
       <span>Convertibles</span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
       <span>Touring</span>
       <span class="arrow">›</span>
@@ -277,14 +328,9 @@
     <div class="divider"></div>
 
     <a href="#" class="menu-item">
-      <span>Electrified
-        <svg width="14" height="14" viewBox="0 0 14 14" style="vertical-align: middle; margin-left: 8px;">
-          <path d="M7 0 L3 7 L6 7 L5 14 L11 6 L8 6 L9 0 Z" fill="#0066b1"/>
-        </svg>
-      </span>
+      <span>Electrified ⚡</span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
       <span>BMW M
         <span class="m-stripes">
@@ -295,29 +341,95 @@
       </span>
       <span class="arrow">›</span>
     </a>
-
     <a href="#" class="menu-item">
-      <span>BMW ALPINA <span class="alpina-arrow">›</span></span>
+      <span>BMW ALPINA <span class="alpina-mark">›</span></span>
     </a>
 
+    <div class="divider"></div>
+
+    <a href="index.html" class="menu-item">
+      <span>Home</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="models.html" class="menu-item">
+      <span>Models 360°</span>
+      <span class="arrow">›</span>
+    </a>
   </div>
 
-  <!-- SEARCH -->
-  <div class="bottom-search">
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input type="text" placeholder="Search">
+  <!-- ===== HERO SPINNER ===== -->
+  <section class="hero-spinner">
+    <div class="hero-label">
+      <h2>The BMW M5</h2>
+      <h1>Explore every angle in <strong>360°</strong></h1>
     </div>
-  </div>
 
-  <!-- CTA IMAGE -->
-  <div class="cta-image">
-    <div class="car-silhouette"></div>
-  </div>
+    <div class="spinner-box">
+      <!-- Sirv 360 spinner -->
+      <div class="Sirv" data-src="https://aligholipour360.sirv.com/Spins/Bmw360/Bmw/Bmw360/BMV%20M5.spin"></div>
+      <div class="spinner-hint">Drag to rotate</div>
+    </div>
+  </section>
+
+  <!-- ===== M5 INFO ===== -->
+  <section class="m5-info">
+    <div class="info-header">
+      <div>
+        <h2>BMW <strong>M5</strong></h2>
+        <div class="subtitle">Plug-in Hybrid · Automatic</div>
+      </div>
+      <div class="price-box">
+        <div class="price-label">Starting from</div>
+        <div class="price">€145,200</div>
+      </div>
+    </div>
+
+    <div class="specs">
+      <div class="spec-item">
+        <div class="val"><strong>717</strong></div>
+        <div class="lbl">Horsepower</div>
+      </div>
+      <div class="spec-item">
+        <div class="val"><strong>3.5</strong> s</div>
+        <div class="lbl">0–100 km/h</div>
+      </div>
+      <div class="spec-item">
+        <div class="val"><strong>305</strong></div>
+        <div class="lbl">Top Speed (km/h)</div>
+      </div>
+      <div class="spec-item">
+        <div class="val"><strong>4.4</strong> L</div>
+        <div class="lbl">V8 Engine</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="cta-btn">Back to Home</a>
+  </section>
 
   <footer>
-    © 2026 Ehsan Najafi | All Rights Reserved
+    © 2026 EHSAN NAJAFI
   </footer>
+
+  <!-- Sirv script -->
+  <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      slideMenu.classList.toggle('open');
+      menuOverlay.classList.toggle('open');
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      slideMenu.classList.remove('open');
+      menuOverlay.classList.remove('open');
+    });
+  </script>
 
 </body>
 </html>
