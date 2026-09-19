@@ -39,12 +39,12 @@
   nav a:hover, nav a.active { color: #0066b1; }
 
   .intro {
-    padding: 100px 60px 60px;
+    padding: 80px 60px 40px;
     max-width: 1200px;
     margin: 0 auto;
   }
   .intro h1 {
-    font-size: 56px;
+    font-size: 52px;
     font-weight: 300;
     letter-spacing: 2px;
     margin-bottom: 15px;
@@ -58,18 +58,39 @@
     line-height: 1.8;
   }
 
+  .tabs {
+    display: flex;
+    gap: 35px;
+    padding: 0 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .tab {
+    padding: 18px 0;
+    font-size: 15px;
+    color: #999;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+  .tab.active {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+    font-weight: 600;
+  }
+  .tab:hover { color: #1a1a1a; }
+
   .spinner-section {
     background: linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%);
-    padding: 40px 20px 80px;
-    margin-top: 40px;
-    border-top: 1px solid #e8e8e8;
+    padding: 40px 20px 60px;
     border-bottom: 1px solid #e8e8e8;
   }
   .spinner-container {
     max-width: 1000px;
     margin: 0 auto;
-    background: #fff;
-    overflow: hidden;
+    background: transparent;
     position: relative;
   }
   .spinner-container .Sirv {
@@ -78,7 +99,7 @@
   }
   .spinner-hint {
     text-align: center;
-    margin-top: 25px;
+    margin-top: 20px;
     color: #999;
     font-size: 12px;
     letter-spacing: 3px;
@@ -90,10 +111,10 @@
   .model-info {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 80px 60px;
+    padding: 70px 60px;
   }
   .model-name {
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 300;
     letter-spacing: 2px;
     margin-bottom: 10px;
@@ -214,11 +235,7 @@
     margin-bottom: 20px;
   }
   .cta h2 strong { font-weight: 700; color: #0066b1; }
-  .cta p {
-    color: #777;
-    margin-bottom: 40px;
-    font-size: 16px;
-  }
+  .cta p { color: #777; margin-bottom: 40px; font-size: 16px; }
   .cta-btn {
     display: inline-block;
     padding: 18px 55px;
@@ -232,10 +249,7 @@
     text-transform: uppercase;
     border: 2px solid #1a1a1a;
   }
-  .cta-btn:hover {
-    background: #fff;
-    color: #1a1a1a;
-  }
+  .cta-btn:hover { background: #fff; color: #1a1a1a; }
 
   footer {
     background: #1a1a1a;
@@ -249,11 +263,13 @@
   @media (max-width: 700px) {
     header { flex-direction: column; gap: 15px; padding: 15px; }
     nav a { margin: 0 10px; font-size: 11px; }
-    .intro { padding: 60px 25px 40px; }
-    .intro h1 { font-size: 34px; }
+    .intro { padding: 50px 25px 30px; }
+    .intro h1 { font-size: 32px; }
+    .tabs { padding: 0 25px; gap: 20px; overflow-x: auto; }
+    .tab { font-size: 13px; white-space: nowrap; }
     .spinner-container .Sirv { height: 320px; }
     .model-info { padding: 50px 25px; }
-    .model-name { font-size: 30px; }
+    .model-name { font-size: 28px; }
     .specs-row { gap: 30px; }
     .spec-value { font-size: 24px; }
     .other-models { padding: 60px 25px; }
@@ -281,6 +297,13 @@
     <p>Experience the ultimate high-performance sedan. Drag to explore every angle of the BMW M5 in stunning 360 degrees.</p>
   </section>
 
+  <div class="tabs">
+    <div class="tab active">Alle</div>
+    <div class="tab">Vollelektrisch</div>
+    <div class="tab">Plug-in-Hybrid</div>
+    <div class="tab">M Modelle</div>
+  </div>
+
   <section class="spinner-section">
     <div class="spinner-container">
       <div class="Sirv" data-src="https://aligholipour360.sirv.com/Spins/Bmw360/Bmw/Bmw360/BMV%20M5.spin"></div>
@@ -290,17 +313,17 @@
 
   <section class="model-info">
     <h2 class="model-name">BMW <strong>M5</strong></h2>
-    <span class="model-tag">Sport Sedan</span>
+    <span class="model-tag">Plug-in Hybrid</span>
     <p class="model-desc">
-      The BMW M5 is the ultimate expression of performance and luxury. Powered by a 4.4-liter V8 engine producing 617 horsepower, it accelerates from 0 to 100 km/h in just 3.3 seconds. With advanced M xDrive technology and a refined interior, the M5 delivers an unmatched driving experience.
+      The BMW M5 is the ultimate expression of performance and luxury. Powered by a 4.4-liter V8 engine combined with an electric motor, producing 717 horsepower, it accelerates from 0 to 100 km/h in just 3.5 seconds. With advanced M xDrive technology and a refined interior, the M5 delivers an unmatched driving experience.
     </p>
     <div class="specs-row">
       <div class="spec-item">
-        <div class="spec-value"><strong>617</strong></div>
+        <div class="spec-value"><strong>717</strong></div>
         <div class="spec-label">Horsepower</div>
       </div>
       <div class="spec-item">
-        <div class="spec-value"><strong>3.3</strong>s</div>
+        <div class="spec-value"><strong>3.5</strong>s</div>
         <div class="spec-label">0-100 km/h</div>
       </div>
       <div class="spec-item">
