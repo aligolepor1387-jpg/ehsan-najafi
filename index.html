@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ehsan Najafi | BMW</title>
+<title>Better Call Ehsan</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -39,7 +39,7 @@
     border: 4px solid #4da6ff;
     display: flex; align-items: center; justify-content: center;
     font-size: 16px; font-weight: bold; color: #000;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     opacity: 0;
     transform: scale(0.3);
     animation: logoIn 1s 0.2s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -50,15 +50,42 @@
     to { opacity: 1; transform: scale(1); }
   }
 
+  /* Text that comes right after logo */
+  .splash-name {
+    font-size: 22px;
+    font-weight: 200;
+    letter-spacing: 4px;
+    color: #fff;
+    opacity: 0;
+    animation: nameIn 1s 1.5s forwards;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 5;
+    line-height: 1.6;
+    text-shadow: 0 0 30px rgba(77,166,255,0.8);
+    margin-bottom: 30px;
+  }
+  .splash-name strong {
+    font-weight: 600;
+    color: #4da6ff;
+    font-size: 26px;
+    letter-spacing: 6px;
+  }
+  @keyframes nameIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
   .speed-trail {
     position: absolute;
-    top: 50%; right: 0;
+    top: 65%;
+    right: 0;
     height: 4px; width: 0;
     background: linear-gradient(90deg, transparent, #4da6ff, #fff);
     box-shadow: 0 0 30px #4da6ff, 0 0 60px #0066b1;
     transform: translateY(-50%);
     opacity: 0;
-    animation: trailGrow 1.2s 1.2s forwards;
+    animation: trailGrow 1.2s 2s forwards;
     z-index: 2;
   }
   @keyframes trailGrow {
@@ -69,11 +96,13 @@
 
   .splash-car {
     position: absolute;
-    top: 50%; right: -120%;
+    top: 65%;
+    right: -120%;
     transform: translateY(-50%);
-    width: 400px; max-width: 85%;
+    width: 380px;
+    max-width: 80%;
     opacity: 0;
-    animation: carDrive 1.8s 1s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: carDrive 1.8s 1.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
     filter: drop-shadow(0 0 40px rgba(77,166,255,0.6)) drop-shadow(0 0 80px rgba(0,102,177,0.4));
     z-index: 3;
   }
@@ -88,13 +117,13 @@
 
   .dust {
     position: absolute;
-    top: 50%; left: 0;
+    top: 65%; left: 0;
     width: 100%; height: 200px;
     transform: translateY(-50%);
     pointer-events: none;
     z-index: 1;
     opacity: 0;
-    animation: dustFade 2s 2.5s forwards;
+    animation: dustFade 2s 3.5s forwards;
   }
   .dust span {
     position: absolute;
@@ -113,36 +142,6 @@
     100% { transform: translate(-40px, -30px) scale(1.5); opacity: 0; }
   }
   @keyframes dustFade { to { opacity: 1; } }
-
-  .splash-name {
-    position: absolute;
-    bottom: 15%; left: 50%;
-    transform: translateX(-50%);
-    font-size: 28px; font-weight: 200;
-    letter-spacing: 12px; color: #fff;
-    opacity: 0;
-    animation: nameIn 1s 3s forwards;
-    text-transform: uppercase;
-    text-align: center; white-space: nowrap;
-    z-index: 5;
-    text-shadow: 0 0 30px rgba(77,166,255,0.8);
-  }
-  .splash-name strong { font-weight: 600; color: #4da6ff; }
-  @keyframes nameIn {
-    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  }
-
-  .splash-sub {
-    position: absolute;
-    bottom: 11%; left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px; letter-spacing: 6px;
-    color: #4da6ff; opacity: 0;
-    animation: nameIn 1s 3.5s forwards;
-    text-transform: uppercase;
-    z-index: 5;
-  }
 
   /* ===================================
      MAIN CONTENT
@@ -203,7 +202,6 @@
     box-shadow: 0 0 20px rgba(77,166,255,0.6);
   }
 
-  /* Hamburger */
   .menu-toggle {
     background: none;
     border: none;
@@ -225,7 +223,6 @@
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
   .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Slide Menu */
   .slide-menu {
     position: fixed;
     top: 0; right: -100%;
@@ -306,12 +303,20 @@
     margin-bottom: 15px; font-weight: 400;
   }
   .hero-title h1 {
-    font-size: 54px; font-weight: 200;
-    letter-spacing: 4px; color: #fff;
-    margin-bottom: 30px; line-height: 1.1;
+    font-size: 38px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 30px;
+    line-height: 1.4;
     text-shadow: 0 0 40px rgba(77,166,255,0.5);
   }
-  .hero-title h1 strong { font-weight: 500; color: #4da6ff; }
+  .hero-title h1 strong {
+    font-weight: 600;
+    color: #4da6ff;
+    font-size: 46px;
+    letter-spacing: 3px;
+  }
   .hero-btn {
     display: inline-block;
     padding: 16px 45px;
@@ -486,7 +491,8 @@
     .center-text { font-size: 11px; }
     .bmw-logo { width: 36px; height: 36px; font-size: 8px; }
     .account-btn { padding: 6px 10px; font-size: 10px; }
-    .hero-title h1 { font-size: 32px; letter-spacing: 2px; }
+    .hero-title h1 { font-size: 24px; letter-spacing: 1px; }
+    .hero-title h1 strong { font-size: 28px; }
     .specs-section { padding: 60px 25px; }
     .section-head h2 { font-size: 30px; }
     .cta-section { padding: 80px 25px; }
@@ -495,9 +501,10 @@
     .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .legal { justify-content: center; flex-wrap: wrap; }
-    .splash-name { font-size: 18px; letter-spacing: 6px; }
+    .splash-name { font-size: 14px; letter-spacing: 2px; padding: 0 20px; }
+    .splash-name strong { font-size: 18px; letter-spacing: 3px; }
     .splash-logo { width: 60px; height: 60px; font-size: 12px; }
-    .splash-car { width: 280px; }
+    .splash-car { width: 260px; }
     .slide-menu { padding: 85px 28px 30px; }
     .menu-item { font-size: 17px; padding: 20px 0; }
   }
@@ -508,13 +515,15 @@
   <!-- ===== SPLASH SCREEN ===== -->
   <div class="splash" id="splash">
     <div class="splash-logo">BMW</div>
+    <div class="splash-name">
+      Looking for a car?<br>
+      <strong>Better call Ehsan</strong>
+    </div>
     <div class="speed-trail"></div>
     <div class="dust">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
     <img src="bmw.jpg" alt="BMW M5" class="splash-car">
-    <div class="splash-name">EHSAN <strong>NAJAFI</strong></div>
-    <div class="splash-sub">Sheer Driving Pleasure</div>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
@@ -569,7 +578,10 @@
     <section class="hero">
       <div class="hero-title">
         <h2>Personal Website</h2>
-        <h1>EHSAN <strong>NAJAFI</strong></h1>
+        <h1>
+          Looking for a car?<br>
+          <strong>Better call Ehsan</strong>
+        </h1>
         <a href="models.html" class="hero-btn">Explore BMW M5</a>
       </div>
 
@@ -621,7 +633,7 @@
           <div class="footer-brand">
             <div class="logo">
               <div class="logo-circle">EN</div>
-              <span>EHSAN NAJAFI</span>
+              <span>BETTER CALL EHSAN</span>
             </div>
             <p>Passionate about cars, technology, and design. A personal tribute to the BMW world.</p>
           </div>
@@ -643,7 +655,7 @@
 
         <div class="footer-bottom">
           <div class="copyright">
-            © 2026 Ehsan Najafi. All rights reserved.
+            © 2026 Better Call Ehsan. All rights reserved.
           </div>
           <div class="legal">
             <a href="#">Privacy Policy</a>
@@ -657,7 +669,7 @@
   </div>
 
   <script>
-    // Splash screen timer
+    // Splash timer
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('splash').classList.add('hide');
