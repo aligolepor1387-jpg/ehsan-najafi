@@ -16,7 +16,7 @@
   }
 
   /* ===================================
-     SPLASH SCREEN
+     SPLASH SCREEN (بدون ویدیو)
      =================================== */
   .splash {
     position: fixed;
@@ -35,55 +35,39 @@
   .splash.hide { opacity: 0; visibility: hidden; }
 
   .splash-logo {
-    width: 80px; height: 80px; border-radius: 50%;
+    width: 100px; height: 100px; border-radius: 50%;
     background: conic-gradient(#0066b1 0deg 90deg, #fff 90deg 180deg, #0066b1 180deg 270deg, #fff 270deg 360deg);
-    border: 4px solid #4da6ff;
+    border: 5px solid #4da6ff;
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: bold; color: #000;
-    margin-bottom: 25px;
+    font-size: 20px; font-weight: bold; color: #000;
+    margin-bottom: 30px;
     opacity: 0;
     transform: scale(0.3);
     animation: logoIn 1s 0.2s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 0 60px rgba(77,166,255,0.8), 0 0 120px rgba(0,102,177,0.5);
+    box-shadow: 0 0 80px rgba(77,166,255,0.9), 0 0 160px rgba(0,102,177,0.6);
     position: relative; z-index: 5;
     flex-shrink: 0;
   }
   @keyframes logoIn { to { opacity: 1; transform: scale(1); } }
 
   .splash-name {
-    font-size: 20px; font-weight: 200; letter-spacing: 3px;
+    font-size: 22px; font-weight: 200; letter-spacing: 5px;
     color: #fff; opacity: 0;
     animation: nameIn 1s 1.5s forwards;
     text-align: center; z-index: 5;
-    line-height: 1.6;
-    text-shadow: 0 0 30px rgba(77,166,255,0.8);
-    margin-bottom: 35px;
+    line-height: 1.8;
+    text-shadow: 0 0 40px rgba(77,166,255,0.8);
   }
   .splash-name strong {
     font-weight: 600; color: #4da6ff;
-    font-size: 26px; letter-spacing: 5px;
+    font-size: 30px; letter-spacing: 6px;
     display: block;
-    margin-top: 5px;
+    margin-top: 10px;
+    text-shadow: 0 0 50px rgba(77,166,255,1);
   }
   @keyframes nameIn {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .splash-car {
-    position: relative;
-    width: 400px;
-    max-width: 80%;
-    opacity: 0;
-    animation: carFadeIn 1.5s 2s forwards;
-    filter: drop-shadow(0 0 40px rgba(77,166,255,0.6)) drop-shadow(0 0 80px rgba(0,102,177,0.4));
-    z-index: 3;
-    border-radius: 16px;
-    object-fit: cover;
-  }
-  @keyframes carFadeIn {
-    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
   }
 
   /* ===================================
@@ -376,10 +360,9 @@
     .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .legal { justify-content: center; flex-wrap: wrap; }
-    .splash-name { font-size: 14px; letter-spacing: 2px; padding: 0 20px; }
-    .splash-name strong { font-size: 18px; letter-spacing: 3px; }
-    .splash-logo { width: 60px; height: 60px; font-size: 12px; margin-bottom: 18px; }
-    .splash-car { width: 300px; }
+    .splash-name { font-size: 16px; letter-spacing: 3px; padding: 0 20px; }
+    .splash-name strong { font-size: 22px; letter-spacing: 4px; }
+    .splash-logo { width: 80px; height: 80px; font-size: 14px; margin-bottom: 25px; }
     .slide-menu { padding: 85px 28px 30px; }
     .menu-item { font-size: 17px; padding: 20px 0; }
   }
@@ -387,18 +370,13 @@
 </head>
 <body>
 
-  <!-- SPLASH SCREEN -->
+  <!-- SPLASH SCREEN (بدون ویدیو) -->
   <div class="splash" id="splash">
     <div class="splash-logo">BMW</div>
     <div class="splash-name">
       Looking for a car?
       <strong>Better call Ehsan</strong>
     </div>
-
-    <!-- SPLASH VIDEO (زیر اسپینر) -->
-    <video class="splash-car" autoplay muted loop playsinline preload="auto">
-      <source src="splash.mp4" type="video/mp4">
-    </video>
   </div>
 
   <!-- MAIN CONTENT -->
@@ -547,7 +525,7 @@
       setTimeout(() => {
         document.getElementById('splash').classList.add('hide');
         document.getElementById('mainContent').classList.add('show');
-      }, 8000);
+      }, 5000);
     });
 
     const menuToggle = document.getElementById('menuToggle');
