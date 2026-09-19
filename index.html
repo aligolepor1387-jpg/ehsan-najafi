@@ -15,7 +15,7 @@
     overflow-x: hidden;
   }
 
-  /* ===== TOP BAR (with hamburger) ===== */
+  /* ===== TOP BAR ===== */
   .top-bar {
     background: #fff;
     padding: 14px 25px;
@@ -64,18 +64,18 @@
   .menu-toggle.active span:nth-child(2) { opacity: 0; }
   .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* ===== SLIDE MENU ===== */
+  /* ===== SLIDE MENU (BMW style) ===== */
   .slide-menu {
     position: fixed;
     top: 0; right: -100%;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     height: 100vh;
     background: #fff;
     z-index: 55;
     transition: right 0.4s ease;
     overflow-y: auto;
-    padding: 100px 40px 40px;
+    padding: 90px 45px 40px;
     box-shadow: -10px 0 40px rgba(0,0,0,0.1);
   }
   .slide-menu.open { right: 0; }
@@ -95,22 +95,39 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 0;
+    padding: 24px 0;
     border-bottom: 1px solid #f0f0f0;
     text-decoration: none;
     color: #1a1a1a;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
+    letter-spacing: 0.3px;
     transition: all 0.3s;
   }
-  .menu-item:hover { color: #0066b1; padding-left: 8px; }
-  .menu-item .arrow { color: #999; font-size: 18px; font-weight: 300; }
-  .divider { height: 1px; background: #d5d5d5; margin: 30px 0; }
-  .m-stripes { display: inline-flex; margin-left: 8px; vertical-align: middle; }
-  .m-stripes span { display: inline-block; width: 4px; height: 14px; }
+  .menu-item:hover { color: #0066b1; }
+  .menu-item .arrow {
+    color: #999;
+    font-size: 20px;
+    font-weight: 300;
+    transition: transform 0.3s;
+  }
+  .menu-item:hover .arrow {
+    transform: translateX(4px);
+    color: #0066b1;
+  }
+  .divider { height: 1px; background: #ccc; margin: 32px 0; }
+
+  .m-stripes { display: inline-flex; margin-left: 10px; vertical-align: middle; }
+  .m-stripes span { display: inline-block; width: 4px; height: 15px; }
   .m-stripes .lightblue { background: #66b8e0; }
   .m-stripes .darkblue { background: #003d7a; }
   .m-stripes .red { background: #e7222e; }
+
+  .alpina-mark {
+    color: #999;
+    margin-left: 8px;
+    font-size: 14px;
+  }
 
   /* ===== HERO ===== */
   .hero {
@@ -292,10 +309,7 @@
     color: #999;
     padding: 80px 60px 35px;
   }
-  .footer-wrap {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
+  .footer-wrap { max-width: 1300px; margin: 0 auto; }
   .footer-top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -306,8 +320,7 @@
   .footer-brand .logo {
     display: flex; align-items: center; gap: 12px;
     font-size: 16px; font-weight: 400; letter-spacing: 3px;
-    color: #fff;
-    margin-bottom: 20px;
+    color: #fff; margin-bottom: 20px;
   }
   .footer-brand .logo-circle {
     width: 38px; height: 38px; border-radius: 50%;
@@ -317,49 +330,28 @@
     font-size: 9px; font-weight: bold; color: #000;
   }
   .footer-brand p {
-    font-size: 13px;
-    line-height: 1.9;
-    color: #777;
-    max-width: 320px;
+    font-size: 13px; line-height: 1.9; color: #777; max-width: 320px;
   }
   .footer-col h4 {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 22px;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: #fff; margin-bottom: 22px;
   }
   .footer-col a {
-    display: block;
-    font-size: 13px;
-    color: #888;
-    text-decoration: none;
-    margin-bottom: 14px;
+    display: block; font-size: 13px; color: #888;
+    text-decoration: none; margin-bottom: 14px;
     transition: color 0.3s;
   }
   .footer-col a:hover { color: #4da6ff; }
 
   .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 30px;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 30px; flex-wrap: wrap; gap: 20px;
   }
-  .copyright {
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: #777;
-  }
+  .copyright { font-size: 12px; letter-spacing: 1px; color: #777; }
   .legal { display: flex; gap: 25px; }
   .legal a {
-    font-size: 12px;
-    color: #777;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: color 0.3s;
+    font-size: 12px; color: #777; text-decoration: none;
+    letter-spacing: 1px; transition: color 0.3s;
   }
   .legal a:hover { color: #4da6ff; }
 
@@ -376,8 +368,8 @@
     .footer-top { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
     .footer-bottom { flex-direction: column; text-align: center; }
     .legal { justify-content: center; flex-wrap: wrap; }
-    .slide-menu { padding: 90px 25px 30px; }
-    .menu-item { font-size: 16px; padding: 18px 0; }
+    .slide-menu { padding: 85px 28px 30px; }
+    .menu-item { font-size: 17px; padding: 20px 0; }
   }
 </style>
 </head>
@@ -400,17 +392,6 @@
   <!-- ===== SLIDE MENU ===== -->
   <div class="menu-overlay" id="menuOverlay"></div>
   <div class="slide-menu" id="slideMenu">
-    <a href="index.html" class="menu-item">
-      <span>Home</span>
-      <span class="arrow">›</span>
-    </a>
-    <a href="models.html" class="menu-item">
-      <span>Models</span>
-      <span class="arrow">›</span>
-    </a>
-
-    <div class="divider"></div>
-
     <a href="#" class="menu-item">
       <span>All Models</span>
       <span class="arrow">›</span>
@@ -428,6 +409,17 @@
       <span class="arrow">›</span>
     </a>
     <a href="#" class="menu-item">
+      <span>Convertibles</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>Touring</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="divider"></div>
+
+    <a href="#" class="menu-item">
       <span>Electrified ⚡</span>
       <span class="arrow">›</span>
     </a>
@@ -439,6 +431,20 @@
           <span class="red"></span>
         </span>
       </span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="#" class="menu-item">
+      <span>BMW ALPINA <span class="alpina-mark">›</span></span>
+    </a>
+
+    <div class="divider"></div>
+
+    <a href="index.html" class="menu-item">
+      <span>Home</span>
+      <span class="arrow">›</span>
+    </a>
+    <a href="models.html" class="menu-item">
+      <span>Models 360°</span>
       <span class="arrow">›</span>
     </a>
   </div>
